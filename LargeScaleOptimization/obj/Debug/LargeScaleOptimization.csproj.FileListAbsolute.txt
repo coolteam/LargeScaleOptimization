@@ -16,3 +16,12 @@ C:\Users\vyarem\Google Drive\Diploma\LargeScaleOptimization\LargeScaleOptimizati
 C:\Users\vyarem\Google Drive\Diploma\LargeScaleOptimization\LargeScaleOptimization\obj\Debug\LargeScaleOptimization.exe
 C:\Users\vyarem\Google Drive\Diploma\LargeScaleOptimization\LargeScaleOptimization\obj\Debug\LargeScaleOptimization.pdb
 C:\Users\vyarem\Google Drive\Diploma\LargeScaleOptimization\LargeScaleOptimization\obj\Debug\LargeScaleOptimization.csprojResolveAssemblyReference.cache
+D:\Studing\XII-term\Diploma\Projects\LargeScaleOptimization\LargeScaleOptimization\LargeScaleOptimization\bin\Debug\LargeScaleOptimization.exe.config
+D:\Studing\XII-term\Diploma\Projects\LargeScaleOptimization\LargeScaleOptimization\LargeScaleOptimization\obj\Debug\LargeScaleOptimization.csprojResolveAssemblyReference.cache
+D:\Studing\XII-term\Diploma\Projects\LargeScaleOptimization\LargeScaleOptimization\LargeScaleOptimization\obj\Debug\LargeScaleOptimization.Form1.resources
+D:\Studing\XII-term\Diploma\Projects\LargeScaleOptimization\LargeScaleOptimization\LargeScaleOptimization\obj\Debug\LargeScaleOptimization.Properties.Resources.resources
+D:\Studing\XII-term\Diploma\Projects\LargeScaleOptimization\LargeScaleOptimization\LargeScaleOptimization\obj\Debug\LargeScaleOptimization.csproj.GenerateResource.Cache
+D:\Studing\XII-term\Diploma\Projects\LargeScaleOptimization\LargeScaleOptimization\LargeScaleOptimization\bin\Debug\LargeScaleOptimization.exe
+D:\Studing\XII-term\Diploma\Projects\LargeScaleOptimization\LargeScaleOptimization\LargeScaleOptimization\bin\Debug\LargeScaleOptimization.pdb
+D:\Studing\XII-term\Diploma\Projects\LargeScaleOptimization\LargeScaleOptimization\LargeScaleOptimization\obj\Debug\LargeScaleOptimization.exe
+D:\Studing\XII-term\Diploma\Projects\LargeScaleOptimization\LargeScaleOptimization\LargeScaleOptimization\obj\Debug\LargeScaleOptimization.pdb
