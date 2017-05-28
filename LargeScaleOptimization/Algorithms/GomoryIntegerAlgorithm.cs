@@ -1,6 +1,8 @@
-﻿namespace LargeScaleOptimization.Algorithms
+﻿using LargeScaleOptimization.Enum;
+
+namespace LargeScaleOptimization.Algorithms
 {
-    public class GomoryAlgorithm : BaseAlgorithm
+    public class GomoryIntegerAlgorithm : BaseAlgorithm
     {
         private double _eps = 1e-5;
         private long _max = 200;

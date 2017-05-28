@@ -16,7 +16,7 @@ namespace LargeScaleOptimization
             var sg = new SimpleGenerator();
             sg.SetSize(20, 20);
             sg.Generate();
-            var rva = new ReduceVectorAlgorithm();
+            var rva = new ReduceVectorIntegerAlgorithm();
             //ga.SetMax(-10);
             rva.SetMainInputData(sg.A, sg.B, sg.C, sg.X);
             var result = rva.CalcResult();
@@ -54,7 +54,7 @@ namespace LargeScaleOptimization
             var sg = new SimpleGenerator();
             sg.SetSize(20,20);
             sg.Generate();
-            var ga = new GomoryAlgorithm();
+            var ga = new GomoryIntegerAlgorithm();
             //ga.SetMax(-10);
             ga.SetMainInputData(sg.A, sg.B, sg.C, sg.X);
             var result = ga.CalcResult();

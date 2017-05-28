@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using LargeScaleOptimization.Enum;
 
 namespace LargeScaleOptimization.Algorithms
 {
-    public class ReduceVectorAlgorithm:BaseAlgorithm
+    public class ReduceVectorIntegerAlgorithm:BaseAlgorithm
     {
         public int Min = int.MaxValue;
 

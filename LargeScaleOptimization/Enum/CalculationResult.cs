@@ -1,4 +1,4 @@
-﻿namespace LargeScaleOptimization.Algorithms
+﻿namespace LargeScaleOptimization.Enum
 {
     public enum CalculationResult
     {
