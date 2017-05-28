@@ -1,0 +1,8 @@
+1)finish Balash algo
+2)test Balash algo
+3)finish Reduce vector integer - not feasible solution
+4)finish Reduce vector integer - timeout
+5)finish Reduce vector integer - remove dict
+6)refactor dataset generator
+7)plan tests
+8)create UI
