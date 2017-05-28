@@ -1,4 +1,4 @@
-﻿namespace LargeScaleOptimization
+﻿namespace LargeScaleOptimization.Algorithms
 {
     public abstract class BaseAlgorithm
     {

@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace LargeScaleOptimization
 {
-    class SimpleGenerator
+    public class SimpleGenerator
     {
+
     }
 }

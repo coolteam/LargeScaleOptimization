@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace LargeScaleOptimization
+namespace LargeScaleOptimization.Algorithms
 {
-    public class GomoryAlgorithm:BaseAlgorithm
+    public class GomoryAlgorithm:LargeScaleOptimization.BaseAlgorithm
     {
         public void GenerateDataSet2()
         {
@@ -67,9 +67,9 @@ namespace LargeScaleOptimization
             return aValue;
         }
 
-        public override OptimizationResult CalcResult()
+        public override LargeScaleOptimization.OptimizationResult CalcResult()
         {
-            return new OptimizationResult();
+            return new LargeScaleOptimization.OptimizationResult();
         }
         public unsafe long Test()
         {

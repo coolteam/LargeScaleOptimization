@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace LargeScaleOptimization
+namespace LargeScaleOptimization.Algorithms
 {
     public class ReduceVectorAlgorithm:BaseAlgorithm
     {
