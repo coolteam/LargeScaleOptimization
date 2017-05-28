@@ -2,42 +2,33 @@
 
 namespace LargeScaleOptimization
 {
-    public class GomoryAlgorithm
+    public class GomoryAlgorithm:BaseAlgorithm
     {
-        //public int[] X = { 0, 2 };
-        //public int[] C = { -1, -2 };
-        //public int[] B = { 2, 7 };
-        //public int[,] A = { { -1, 1 }, { 3, -1 } };
-        public int[] X = {0, 0,0};
-        public int[] C = {-4, -5,-1};
-        public int[] B = {10, 11, 13};
-        public int[,] A = {{3, 2,0}, {1, 4,0}, {3, 3,1}};
-
         public void GenerateDataSet2()
         {
             var rnd = new Random();
             var n = 10;
             var m = 10;
-            X = new int[n];
-            A = new int[m, n];
-            C = new int[n];
-            B = new int[m];
+            X = new long[n];
+            A = new long[m, n];
+            C = new long[n];
+            B = new long[m];
             for (var i = 0; i < n; ++i)
             {
                 X[i] = rnd.Next(0, 10);
                 C[i] = rnd.Next(0, 2);
             }
-            for (int j = 0; j < m; j++)
+            for (long j = 0; j < m; j++)
             {
-                var sum = 0;
-                for (int k = 0; k < n; k++)
+                var sum = 0l;
+                for (long k = 0; k < n; k++)
                 {
                     A[j, k] = rnd.Next(0, 10);
                     sum += A[j, k] * X[k];
                 }
                 B[j] = sum + rnd.Next(0, 15);
             }
-            var sum1 = 0;
+            var sum1 = 0l;
             for (var i = 0; i < n; ++i)
             {
                 sum1 += X[i];
@@ -74,6 +65,11 @@ namespace LargeScaleOptimization
                 }
             }
             return aValue;
+        }
+
+        public override OptimizationResult CalcResult()
+        {
+            return new OptimizationResult();
         }
         public unsafe long Test()
         {

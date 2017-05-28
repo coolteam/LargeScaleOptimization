@@ -69,7 +69,7 @@ namespace LargeScaleOptimization
 
         private void calcBattonInt_Click(object sender, EventArgs e)
         {
-            var rvi = new ReduceVectorInt();
+            var rva = new ReduceVectorAlgorithm();
             var ga = new GomoryAlgorithm();
             var a = string.Empty;
             //rvi.GenerateDataSet2();

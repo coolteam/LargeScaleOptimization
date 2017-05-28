@@ -4,12 +4,8 @@ using System.Linq;
 
 namespace LargeScaleOptimization
 {
-    public class ReduceVectorInt
+    public class ReduceVectorAlgorithm:BaseAlgorithm
     {
-        public int[] X = {0, 0, 0};
-        public int[] C = {-4, -5, -1};
-        public int[] B = {10, 11, 13};
-        public int[,] A = {{3, 2, 0}, {1, 4, 0}, {3, 3, 1}};
         public int Min = int.MaxValue;
 
         public void GenerateDataSet()
@@ -17,10 +13,10 @@ namespace LargeScaleOptimization
             var rnd = new Random();
             var n = 10;
             var m = 10;
-            X = new int[n];
-            A = new int[m,n];
-            C = new int[n];
-            B = new int[m];
+            X = new long[n];
+            A = new long[m,n];
+            C = new long[n];
+            B = new long[m];
             for (var i = 0; i < n; ++i)
             {
                 X[i] = 0;
@@ -42,10 +38,10 @@ namespace LargeScaleOptimization
             var rnd = new Random();
             var n = 50;
             var m = 50;
-            X = new int[n];
-            A = new int[m, n];
-            C = new int[n];
-            B = new int[m];
+            X = new long[n];
+            A = new long[m, n];
+            C = new long[n];
+            B = new long[m];
             for (var i = 0; i < n; ++i)
             {
                 X[i] = rnd.Next(0, 10);
@@ -53,7 +49,7 @@ namespace LargeScaleOptimization
             }
             for (int j = 0; j < m; j++)
                 {
-                    var sum = 0;
+                    var sum = 0l;
                     for (int k = 0; k < n; k++)
                     {
                         A[j, k] = rnd.Next(0, 10);
@@ -61,7 +57,7 @@ namespace LargeScaleOptimization
                     }
                     B[j] = sum + rnd.Next(0, 15);
                 }
-            var sum1 = 0;
+            var sum1 = 0l;
             for (var i = 0; i < n; ++i)
             {
                 sum1 += X[i];
@@ -75,13 +71,13 @@ namespace LargeScaleOptimization
             *p *= *p;
         }
 
-        public int GetMinBy4Algo(out string desc)
+        public long GetMinBy4Algo(out string desc)
         {
             desc = "-----START-----" + Environment.NewLine;
             var h = 0;
             var needContinue = true;
             var n = X.Length;
-            var dict = new Dictionary<int[], int>();
+            var dict = new Dictionary<long[], long>();
             while (needContinue)
             {
                // var dict = new Dictionary<int[], int>();
@@ -104,7 +100,7 @@ namespace LargeScaleOptimization
                 }
                 dict.Clear();
             }
-            var sum = 0;
+            var sum = 0l;
             for (var i = 0; i < n; ++i)
             {
                 sum += C[i]*X[i];
@@ -112,13 +108,13 @@ namespace LargeScaleOptimization
             return sum;
         }
 
-        public int[] GetFeasibleSolution1(ref  Dictionary<int[], int> dict)
+        public long[] GetFeasibleSolution1(ref  Dictionary<long[], long> dict)
         {
             var n = X.Length;
             var m = B.Length;
-            var x = new int[n];
+            var x = new long[n];
             Array.Copy(X,x,n);
-            var r = 1;
+            var r = 1l;
             var str = string.Empty;
             for (var i = 0; i < n; ++i)
             {
@@ -134,7 +130,7 @@ namespace LargeScaleOptimization
                         var delta = GetDelta(x);
                         if (delta < 0)
                         {
-                            var tmp = new int[n];
+                            var tmp = new long[n];
                             Array.Copy(x, tmp, n);
                             dict.Add(tmp, delta);
                         }
@@ -159,11 +155,11 @@ namespace LargeScaleOptimization
             return null;
         }
 
-        public int[] GetFeasibleSolution2(ref Dictionary<int[], int> dict)
+        public long[] GetFeasibleSolution2(ref Dictionary<long[], long> dict)
         {
             var n = X.Length;
             var m = B.Length;
-            var x = new int[n];
+            var x = new long[n];
             Array.Copy(X, x, n);
             const int r = 2;
             var str = string.Empty;
@@ -185,7 +181,7 @@ namespace LargeScaleOptimization
                         var delta = GetDelta(x);
                         if (delta < 0)
                         {
-                            var tmp = new int[n];
+                            var tmp = new long[n];
                             Array.Copy(x, tmp, n);
                             dict.Add(tmp, delta);
                         }
@@ -204,7 +200,7 @@ namespace LargeScaleOptimization
                             var delta = GetDelta(x);
                             if (delta < 0)
                             {
-                                var tmp = new int[n];
+                                var tmp = new long[n];
                                 Array.Copy(x, tmp, n);
                                 dict.Add(tmp, delta);
                             }
@@ -230,13 +226,13 @@ namespace LargeScaleOptimization
             return null;
         }
 
-        public int[] GetFeasibleSolution3(ref Dictionary<int[], int> dict)
+        public long[] GetFeasibleSolution3(ref Dictionary<long[], long> dict)
         {
             var n = X.Length;
             var m = B.Length;
-            var x = new int[n];
+            var x = new long[n];
             Array.Copy(X, x, n);
-            const int r = 3;
+            const long r = 3L;
             var str = string.Empty;
             var p1Arr = new[] { -r, r };
             var p2Arr = new[]
@@ -271,7 +267,7 @@ namespace LargeScaleOptimization
                         var delta = GetDelta(x);
                         if (delta < 0)
                         {
-                            var tmp = new int[n];
+                            var tmp = new long[n];
                             Array.Copy(x, tmp, n);
                             dict.Add(tmp, delta);
                         }
@@ -290,7 +286,7 @@ namespace LargeScaleOptimization
                             var delta = GetDelta(x);
                             if (delta < 0)
                             {
-                                var tmp = new int[n];
+                                var tmp = new long[n];
                                 Array.Copy(x, tmp, n);
                                 dict.Add(tmp, delta);
                             }
@@ -311,7 +307,7 @@ namespace LargeScaleOptimization
                                 var delta = GetDelta(x);
                                 if (delta < 0)
                                 {
-                                    var tmp = new int[n];
+                                    var tmp = new long[n];
                                     Array.Copy(x, tmp, n);
                                     dict.Add(tmp, delta);
                                 }
@@ -341,7 +337,7 @@ namespace LargeScaleOptimization
             return null;
         }
 
-        private bool SatisfyPositive(int[]x,int n)
+        private bool SatisfyPositive(long[]x,int n)
         {
             for (var i = 0; i < n; ++i)
             {
@@ -353,11 +349,11 @@ namespace LargeScaleOptimization
             return true;
         }
 
-        private bool SatisfyRestriction(int[]x,int n, int m)
+        private bool SatisfyRestriction(long[]x,int n, int m)
         {
             for (var j = 0; j < m; ++j)
             {
-                var sum = 0;
+                var sum = 0L;
                 for (var i = 0; i < n; ++i)
                 {
                     sum += A[j, i]*x[i];
@@ -370,9 +366,9 @@ namespace LargeScaleOptimization
             return true;
         }
 
-        private int GetDelta(int[] x)
+        private long GetDelta(long[] x)
         {
-            var sum = 0;
+            var sum = 0L;
             for (var i = 0; i < x.Length; i++)
             {
                 sum += C[i]*(x[i] - X[i]);
@@ -380,20 +376,20 @@ namespace LargeScaleOptimization
             return sum;
         }
 
-        public int GetMinBy3Algo(out string desc)
+        public long GetMinBy3Algo(out string desc)
         {
             desc = "-----START-----" + Environment.NewLine;
             var r = 2;
             var h = 0;
             var delta = int.MaxValue;
             var checkedList = new List<int[]>();
-            var dict = new Dictionary<int[], int>();
+            var dict = new Dictionary<long[], long>();
             while (delta >= 0)
             {
                 A:
                 ++h;
                 
-                var x = new int[X.Length];
+                var x = new long[X.Length];
                 for (var j0 = 0; j0 < C.Length; ++j0)
                 {
                     for (var p0 = -r; p0 <= r; ++p0)
@@ -443,7 +439,7 @@ namespace LargeScaleOptimization
                                 var allow = true;
                                 for (var k = 0; k < A.GetLength(0); ++k)
                                 {
-                                    var sum = 0;
+                                    var sum = 0l;
                                     for (var l = 0; l < A.GetLength(1); ++l)
                                     {
                                         sum += A[k, l]*x[l];
@@ -456,8 +452,8 @@ namespace LargeScaleOptimization
                                 }
                                 if (allow)
                                 {
-                                    var sum = 0;
-                                    for (int i = 0; i < X.Length; ++i)
+                                    var sum = 0l;
+                                    for (long i = 0; i < X.Length; ++i)
                                     {
                                         sum += C[i]*(x[i]-X[i]);
                                     }
@@ -480,7 +476,7 @@ namespace LargeScaleOptimization
                                         //var tmp = new int[x.Length];
                                         //Array.Copy(x, tmp, x.Length);
                                         //checkedList.Add(tmp);
-                                        var sol = new int[x.Length];
+                                        var sol = new long[x.Length];
                                         Array.Copy(x,sol,x.Length);
                                         dict.Add(sol,sum);
 
@@ -513,7 +509,7 @@ namespace LargeScaleOptimization
                 goto A;
             }
             desc += Environment.NewLine+"-----FINISH-----";
-            var f = 0;
+            var f = 0l;
             for (var i = 0; i < X.Length; ++i)
             {
                 f += C[i] * X[i];
