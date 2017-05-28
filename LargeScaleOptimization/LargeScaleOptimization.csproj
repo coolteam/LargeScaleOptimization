@@ -48,7 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algorithms\BaseAlgorithm.cs" />
-    <Compile Include="BaseAlgorithm.cs" />
+    <Compile Include="Algorithms\CalculationResult.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

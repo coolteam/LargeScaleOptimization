@@ -30,7 +30,7 @@
         {
             this.calcButton = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.calcBattonInt = new System.Windows.Forms.Button();
+            this.calcGomory = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -42,9 +42,9 @@
             this.calcButton.Name = "calcButton";
             this.calcButton.Size = new System.Drawing.Size(260, 41);
             this.calcButton.TabIndex = 0;
-            this.calcButton.Text = "Reduce vector bool";
+            this.calcButton.Text = "ReduceVector";
             this.calcButton.UseVisualStyleBackColor = true;
-            this.calcButton.Click += new System.EventHandler(this.calcButton_Click);
+            this.calcButton.Click += new System.EventHandler(this.ReduceVector_Click);
             // 
             // richTextBox1
             // 
@@ -57,17 +57,17 @@
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.Text = "";
             // 
-            // calcBattonInt
+            // calcGomory
             // 
-            this.calcBattonInt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.calcGomory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.calcBattonInt.Location = new System.Drawing.Point(448, 330);
-            this.calcBattonInt.Name = "calcBattonInt";
-            this.calcBattonInt.Size = new System.Drawing.Size(138, 41);
-            this.calcBattonInt.TabIndex = 2;
-            this.calcBattonInt.Text = "Reduce vector int";
-            this.calcBattonInt.UseVisualStyleBackColor = true;
-            this.calcBattonInt.Click += new System.EventHandler(this.calcBattonInt_Click);
+            this.calcGomory.Location = new System.Drawing.Point(448, 330);
+            this.calcGomory.Name = "calcGomory";
+            this.calcGomory.Size = new System.Drawing.Size(138, 41);
+            this.calcGomory.TabIndex = 2;
+            this.calcGomory.Text = "Gomory";
+            this.calcGomory.UseVisualStyleBackColor = true;
+            this.calcGomory.Click += new System.EventHandler(this.calcGomory_Click);
             // 
             // button1
             // 
@@ -87,7 +87,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(598, 383);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.calcBattonInt);
+            this.Controls.Add(this.calcGomory);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.calcButton);
             this.Name = "Form1";
@@ -100,7 +100,7 @@
 
         private System.Windows.Forms.Button calcButton;
         private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.Button calcBattonInt;
+        private System.Windows.Forms.Button calcGomory;
         private System.Windows.Forms.Button button1;
     }
 }

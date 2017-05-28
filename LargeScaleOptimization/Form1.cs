@@ -18,28 +18,15 @@ namespace LargeScaleOptimization
             InitializeComponent();
         }
 
-        private void calcButton_Click(object sender, EventArgs e)
+        private void ReduceVector_Click(object sender, EventArgs e)
         {
-            var a1 = new[] {1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 2, 1};
-            var c1 = new[] {2, -1, 2, -2, 2, -3, 2, -4};
-            var b = new[] {2, 4};
-            var n = 4;
-            var m = 2;
-            var q = 1;
-            var x = new[] {0, 0, 0, 0};
-            var up = new[] {600d, 1d};
-            int resultCode = -1;
-            var a = VectopPack(a1);
-            var c = VectopPack(c1);
-            var ga = new GomoryAlgorithm();
-            ga.Test();
-            //var min = MainAlgo(a, b, c, n, m, q, up, ref resultCode, ref x);
-            unsafe
-            {
-                int a11 = 100;
-                var b11 = 132;
-                print_result_code(&a11, &b11);
-            }
+            var sg = new SimpleGenerator();
+            sg.SetSize(10, 10);
+            var rva = new ReduceVectorAlgorithm();
+            //ga.SetMax(-10);
+            //rva.SetMainInputData(sg.A, sg.B, sg.C, sg.X);
+            var result = rva.CalcResult();
+            richTextBox1.Text = rva.FormatResultAsString(result);
         }
 
         unsafe int print_result_code(int* ierr, int* nom)
@@ -68,15 +55,15 @@ namespace LargeScaleOptimization
             return 0;
         }
 
-        private void calcBattonInt_Click(object sender, EventArgs e)
+        private void calcGomory_Click(object sender, EventArgs e)
         {
-            var rva = new ReduceVectorAlgorithm();
+            var sg = new SimpleGenerator();
+            sg.SetSize(10,10);
             var ga = new GomoryAlgorithm();
-            var a = string.Empty;
-            //rvi.GenerateDataSet2();
-            var min = ga.Test();
-            richTextBox1.Text = min + Environment.NewLine; //rvi.ResultToString();
-            richTextBox1.Text += Environment.NewLine + a;
+            //ga.SetMax(-10);
+            //ga.SetMainInputData(sg.A, sg.B, sg.C, sg.X);
+            var result = ga.CalcResult();
+            richTextBox1.Text = ga.FormatResultAsString(result);
         }
 
         private void button1_Click(object sender, EventArgs e)

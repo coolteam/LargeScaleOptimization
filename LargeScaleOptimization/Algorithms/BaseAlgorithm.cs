@@ -1,29 +1,44 @@
-﻿namespace LargeScaleOptimization.Algorithms
+﻿using System;
+using LargeScaleOptimization.Algorithms;
+
+namespace LargeScaleOptimization
 {
     public abstract class BaseAlgorithm
     {
-        public long[] X = {0, 0, 0};
-        public long[] C = {-4, -5, -1};
-        public long[] B = {10, 11, 13};
-        public long[,] A = {{3, 2, 0}, {1, 4, 0}, {3, 3, 1}};
+        public long[,] A = { { 3, 2, 0 }, { 1, 4, 0 }, { 3, 3, 1 } };
+        public long[] B = { 10, 11, 13 };
+        public long[] C = { -4, -5, -1 };
+        public long[] X = { 0, 0, 0 };
 
-        public void SetMainInputData()
+        public void SetMainInputData(long[,] a, long[] b, long[] c, long[] x)
         {
-        }
-
-        public void SetAdditionalInputData()
-        {
+            A = a;
+            B = b;
+            C = c;
+            X = x;
         }
 
         public virtual OptimizationResult CalcResult()
         {
             return new OptimizationResult();
         }
+
+        public string FormatResultAsString(OptimizationResult optimizationResult)
+        {
+            var result = optimizationResult.ResultCode.ToString();
+            if (optimizationResult.ResultCode != CalculationResult.FeasibleSolutionNotFound)
+            {
+                result += Environment.NewLine + "Max: " + optimizationResult.Min;
+                result += Environment.NewLine + "Solution: " + string.Join(",", optimizationResult.X);
+            }
+            return result;
+        }
     }
 
     public struct OptimizationResult
     {
-        private long[] X;
-        private long Min;
+        public long[] X;
+        public long Min;
+        public CalculationResult ResultCode;
     }
 }

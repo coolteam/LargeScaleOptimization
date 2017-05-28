@@ -66,14 +66,8 @@ namespace LargeScaleOptimization.Algorithms
             var f = sum1;
         }
 
-        unsafe static void SquarePtrParam(int* p)
+        public override OptimizationResult CalcResult()
         {
-            *p *= *p;
-        }
-
-        public long GetMinBy4Algo(out string desc)
-        {
-            desc = "-----START-----" + Environment.NewLine;
             var h = 0;
             var needContinue = true;
             var n = X.Length;
@@ -105,7 +99,7 @@ namespace LargeScaleOptimization.Algorithms
             {
                 sum += C[i]*X[i];
             }
-            return sum;
+            return new OptimizationResult {Min = sum, X = X, ResultCode = CalculationResult.OptimalSolutionFound};
         }
 
         public long[] GetFeasibleSolution1(ref  Dictionary<long[], long> dict)
@@ -515,11 +509,6 @@ namespace LargeScaleOptimization.Algorithms
                 f += C[i] * X[i];
             }
             return f;
-        }
-
-        public string ResultToString()
-        {
-            return string.Join(",", X);
         }
     }
 }

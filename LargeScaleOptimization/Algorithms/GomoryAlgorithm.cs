@@ -1,45 +1,51 @@
-﻿using System;
-
-namespace LargeScaleOptimization.Algorithms
+﻿namespace LargeScaleOptimization.Algorithms
 {
-    public class GomoryAlgorithm:LargeScaleOptimization.BaseAlgorithm
+    public class GomoryAlgorithm : BaseAlgorithm
     {
-        public void GenerateDataSet2()
+        private double _eps = 1e-5;
+        private long _max = 10;
+
+        public override unsafe OptimizationResult CalcResult()
         {
-            var rnd = new Random();
-            var n = 10;
-            var m = 10;
-            X = new long[n];
-            A = new long[m, n];
-            C = new long[n];
-            B = new long[m];
-            for (var i = 0; i < n; ++i)
+            long[] aValue = CreateMatrixBarA();
+            long m = B.Length + X.Length + 2;
+            long n = X.Length + 1;
+            long max = _max;
+            int ierr;
+            long[] mrValue = new long[2*B.Length + 2*X.Length];
+            long min;
+            var eps = _eps;
+            fixed (long* a = &(aValue[0]), mr = &(mrValue[0]))
             {
-                X[i] = rnd.Next(0, 10);
-                C[i] = rnd.Next(0, 2);
-            }
-            for (long j = 0; j < m; j++)
-            {
-                var sum = 0l;
-                for (long k = 0; k < n; k++)
+                mlc2r_c(a, &m, &n, mr, &max, &eps, &ierr);
+                for (var i = 0; i < X.Length; ++i)
                 {
-                    A[j, k] = rnd.Next(0, 10);
-                    sum += A[j, k] * X[k];
+                    X[i] = (int) a[1 + i];
                 }
-                B[j] = sum + rnd.Next(0, 15);
+                min = a[0];
             }
-            var sum1 = 0l;
-            for (var i = 0; i < n; ++i)
+
+            var result = new LargeScaleOptimization.OptimizationResult
             {
-                sum1 += X[i];
-                X[i] = 0;
-            }
-            var f = sum1;
+                X = X,
+                Min = min,
+                ResultCode = (CalculationResult) ierr
+            };
+            return result;
         }
 
-        public long[] GenerateMatrixBarA()
+        public void SetEpsilon(double eps)
         {
-            GenerateDataSet2();
+            _eps = eps;
+        }
+
+        public void SetMax(int max)
+        {
+            _max = max;
+        }
+
+        private long[] CreateMatrixBarA()
+        {
             var n0 = X.Length;
             var m0 = B.Length;
             var m = 2 + m0 + n0;
@@ -67,50 +73,7 @@ namespace LargeScaleOptimization.Algorithms
             return aValue;
         }
 
-        public override LargeScaleOptimization.OptimizationResult CalcResult()
-        {
-            return new LargeScaleOptimization.OptimizationResult();
-        }
-        public unsafe long Test()
-        {
-            /* Initialized data */
-            long[] aValue /* was [8][4] */ = new long[]
-            {
-                0, 0, 0, 0, 10, 11, 13, 0, -4, -1, 0, 0, 3, 1, 3, 0, -5, 0, -1, 0, 2, 4, 3, 0,
-                -1, 0, 0, -1, 0, 0, 1, 0
-            };
-            aValue = GenerateMatrixBarA();
-            //long aRef = aValue[0];
-            //long* a = &aRef;
-            long m = B.Length + X.Length + 2;
-            long n = X.Length + 1;
-            long max__ = -100;
-            double eps = .001f;
-
-            /* Local variables */
-            long ierr;
-            long[] mrValue = new long[2*B.Length+2*X.Length];
-            //var mrRef = mrValue[0];
-            //long* mr=&mrRef;
-            var min = 0l;
-            fixed (long* a = &(aValue[0]), mr = &(mrValue[0]))
-            {
-                mlc2r_c(a, &m, &n, mr, &max__, &eps, &ierr);
-                for (var i = 0; i < X.Length; ++i)
-                {
-                    X[i] = (int) a[1 + i];
-                }
-                min = a[0];
-                var x0 = a[(1)*8 + 1 - 9];
-                var x1= a[(1) * 8 + 2 - 9];
-                var x2 = a[(1) * 8 + 3 - 9];
-                var x3 = a[(1) * 8 + 4 - 9];
-            }
-            
-            return min;
-        }
-
-        private unsafe int mlc2r_c(long* a, long* m, long* n, long* mr, long* max__, double* eps, long* ierr)
+        private unsafe int mlc2r_c(long* a, long* m, long* n, long* mr, long* max__, double* eps, int* ierr)
         {
             /* System generated locals */
             long a_dim1, a_offset, i__1;
