@@ -33,6 +33,7 @@
             this.calcGomory = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.reduceVectorBoolButton = new System.Windows.Forms.Button();
+            this.BalashBoolButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // reduceVectorIntegerButton
@@ -62,11 +63,11 @@
             // 
             this.calcGomory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.calcGomory.Location = new System.Drawing.Point(448, 302);
+            this.calcGomory.Location = new System.Drawing.Point(420, 251);
             this.calcGomory.Name = "calcGomory";
-            this.calcGomory.Size = new System.Drawing.Size(138, 41);
+            this.calcGomory.Size = new System.Drawing.Size(166, 41);
             this.calcGomory.TabIndex = 2;
-            this.calcGomory.Text = "Gomory";
+            this.calcGomory.Text = "GomoryInteger";
             this.calcGomory.UseVisualStyleBackColor = true;
             this.calcGomory.Click += new System.EventHandler(this.calcGomory_Click);
             // 
@@ -94,11 +95,24 @@
             this.reduceVectorBoolButton.UseVisualStyleBackColor = true;
             this.reduceVectorBoolButton.Click += new System.EventHandler(this.reduceVectorBoolButton_Click);
             // 
+            // BalashBoolButton
+            // 
+            this.BalashBoolButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.BalashBoolButton.Location = new System.Drawing.Point(420, 302);
+            this.BalashBoolButton.Name = "BalashBoolButton";
+            this.BalashBoolButton.Size = new System.Drawing.Size(166, 41);
+            this.BalashBoolButton.TabIndex = 5;
+            this.BalashBoolButton.Text = "BalashBool";
+            this.BalashBoolButton.UseVisualStyleBackColor = true;
+            this.BalashBoolButton.Click += new System.EventHandler(this.BalashBoolButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(598, 355);
+            this.Controls.Add(this.BalashBoolButton);
             this.Controls.Add(this.reduceVectorBoolButton);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.calcGomory);
@@ -117,6 +131,7 @@
         private System.Windows.Forms.Button calcGomory;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button reduceVectorBoolButton;
+        private System.Windows.Forms.Button BalashBoolButton;
     }
 }
 

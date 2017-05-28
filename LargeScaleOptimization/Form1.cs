@@ -35,6 +35,11 @@ namespace LargeScaleOptimization
             richTextBox1.Text = rvba.FormatResultAsString(result);
         }
 
+        private void BalashBoolButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private int[] VectopPack(int[] a)
         {
             var n = a.Length;
