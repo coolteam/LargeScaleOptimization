@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using LargeScaleOptimization.Algorithms;
 
@@ -21,10 +14,11 @@ namespace LargeScaleOptimization
         private void ReduceVector_Click(object sender, EventArgs e)
         {
             var sg = new SimpleGenerator();
-            sg.SetSize(10, 10);
+            sg.SetSize(20, 20);
+            sg.Generate();
             var rva = new ReduceVectorAlgorithm();
             //ga.SetMax(-10);
-            //rva.SetMainInputData(sg.A, sg.B, sg.C, sg.X);
+            rva.SetMainInputData(sg.A, sg.B, sg.C, sg.X);
             var result = rva.CalcResult();
             richTextBox1.Text = rva.FormatResultAsString(result);
         }
@@ -58,10 +52,11 @@ namespace LargeScaleOptimization
         private void calcGomory_Click(object sender, EventArgs e)
         {
             var sg = new SimpleGenerator();
-            sg.SetSize(10,10);
+            sg.SetSize(20,20);
+            sg.Generate();
             var ga = new GomoryAlgorithm();
             //ga.SetMax(-10);
-            //ga.SetMainInputData(sg.A, sg.B, sg.C, sg.X);
+            ga.SetMainInputData(sg.A, sg.B, sg.C, sg.X);
             var result = ga.CalcResult();
             richTextBox1.Text = ga.FormatResultAsString(result);
         }

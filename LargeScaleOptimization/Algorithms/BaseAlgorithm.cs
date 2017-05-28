@@ -1,7 +1,6 @@
 ﻿using System;
-using LargeScaleOptimization.Algorithms;
 
-namespace LargeScaleOptimization
+namespace LargeScaleOptimization.Algorithms
 {
     public abstract class BaseAlgorithm
     {

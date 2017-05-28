@@ -13,6 +13,11 @@ namespace LargeScaleOptimization
         private int _m;
         private Random _rand;
 
+        public SimpleGenerator()
+        {
+            _rand = new Random();
+        }
+
         public void SetSize(int m, int n)
         {
             _n = n;

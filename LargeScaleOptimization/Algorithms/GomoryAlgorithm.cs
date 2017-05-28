@@ -3,7 +3,7 @@
     public class GomoryAlgorithm : BaseAlgorithm
     {
         private double _eps = 1e-5;
-        private long _max = 10;
+        private long _max = 200;
 
         public override unsafe OptimizationResult CalcResult()
         {
@@ -25,7 +25,7 @@
                 min = a[0];
             }
 
-            var result = new LargeScaleOptimization.OptimizationResult
+            var result = new OptimizationResult
             {
                 X = X,
                 Min = min,
