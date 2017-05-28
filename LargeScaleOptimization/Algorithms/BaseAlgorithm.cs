@@ -5,10 +5,14 @@ namespace LargeScaleOptimization.Algorithms
 {
     public abstract class BaseAlgorithm
     {
-        public long[,] A = { { 3, 2, 0 }, { 1, 4, 0 }, { 3, 3, 1 } };
-        public long[] B = { 10, 11, 13 };
-        public long[] C = { -4, -5, -1 };
-        public long[] X = { 0, 0, 0 };
+        //public long[,] A = { { 3, 2, 0 }, { 1, 4, 0 }, { 3, 3, 1 } };
+        //public long[] B = { 10, 11, 13 };
+        //public long[] C = { -4, -5, -1 };
+        //public long[] X = { 0, 0, 0 };
+        public long[,] A = {{1, 1, 1, 1}, {1, 1, 1, 1}};
+        public long[] B = { 2,4 };
+        public long[] C = {-1, -2, -3, -4};
+        public long[] X = { 0, 0,0,0 };
 
         public void SetMainInputData(long[,] a, long[] b, long[] c, long[] x)
         {

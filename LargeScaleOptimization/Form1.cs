@@ -23,13 +23,17 @@ namespace LargeScaleOptimization
             richTextBox1.Text = rva.FormatResultAsString(result);
         }
 
-        unsafe int print_result_code(int* ierr, int* nom)
+        private void reduceVectorBoolButton_Click(object sender, EventArgs e)
         {
-            var a = ("\n   UTMLCP *********\n");
-            a+=string.Format("\n IERR = %3i {0},   NOM = %3i {1}\n", *ierr, *nom);
-            richTextBox1.Text = a;
-            return 0;
-        } /* print_result_code */
+            var sg = new SimpleGenerator();
+            sg.SetSize(20, 20);
+            //sg.Generate();
+            var rvba = new ReduceVectorBoolAlgorithm();
+            //ga.SetMax(-10);
+            //rvba.SetMainInputData(sg.A, sg.B, sg.C, sg.X);
+            var result = rvba.CalcResult();
+            richTextBox1.Text = rvba.FormatResultAsString(result);
+        }
 
         private int[] VectopPack(int[] a)
         {
@@ -43,16 +47,10 @@ namespace LargeScaleOptimization
             return result;
         }
 
-        private int MainAlgo(int[] a, int[]b,int[]c,int n, int m,int q,double[] up, ref int resultCode, ref int[] x)
-        {
-
-            return 0;
-        }
-
         private void calcGomory_Click(object sender, EventArgs e)
         {
             var sg = new SimpleGenerator();
-            sg.SetSize(20,20);
+            sg.SetSize(15,15);
             sg.Generate();
             var ga = new GomoryIntegerAlgorithm();
             //ga.SetMax(-10);
@@ -209,5 +207,7 @@ namespace LargeScaleOptimization
         {
             return "("+ string.Join(",",x)+ "); ";
         }
+
+        
     }
 }

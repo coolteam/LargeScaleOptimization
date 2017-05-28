@@ -7,66 +7,6 @@ namespace LargeScaleOptimization.Algorithms
 {
     public class ReduceVectorIntegerAlgorithm:BaseAlgorithm
     {
-        public int Min = int.MaxValue;
-
-        public void GenerateDataSet()
-        {
-            var rnd = new Random();
-            var n = 10;
-            var m = 10;
-            X = new long[n];
-            A = new long[m,n];
-            C = new long[n];
-            B = new long[m];
-            for (var i = 0; i < n; ++i)
-            {
-                X[i] = 0;
-                C[i] = rnd.Next(-10, 10);
-                
-                for (int j = 0; j < m; ++j)
-                {
-                    A[j,i]= rnd.Next(-10, 10);
-                }
-            }
-            for (int j = 0; j < m; ++j)
-            {
-                B[j] = (int) Math.Round(rnd.NextDouble()*2.5*n + 0.9*n);
-            }
-        }
-
-        public void GenerateDataSet2()
-        {
-            var rnd = new Random();
-            var n = 50;
-            var m = 50;
-            X = new long[n];
-            A = new long[m, n];
-            C = new long[n];
-            B = new long[m];
-            for (var i = 0; i < n; ++i)
-            {
-                X[i] = rnd.Next(0, 10);
-                C[i] = rnd.Next(-2, 0);
-            }
-            for (int j = 0; j < m; j++)
-                {
-                    var sum = 0l;
-                    for (int k = 0; k < n; k++)
-                    {
-                        A[j, k] = rnd.Next(0, 10);
-                        sum += A[j, k]*X[k];
-                    }
-                    B[j] = sum + rnd.Next(0, 15);
-                }
-            var sum1 = 0l;
-            for (var i = 0; i < n; ++i)
-            {
-                sum1 += X[i];
-                X[i] = 0;
-            }
-            var f = sum1;
-        }
-
         public override OptimizationResult CalcResult()
         {
             var h = 0;
