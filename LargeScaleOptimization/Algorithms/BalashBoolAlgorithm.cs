@@ -45,11 +45,13 @@ namespace LargeScaleOptimization.Algorithms
                     {
                         mnr3r_c(x, xs, a, na, b, c, nc, &m, &n, y, &z__, &zs, &s, ny, nx, dif, &eps);
 
+                        X = new long[nxValue.Length];
                         k = 0;
                         i__1 = n;
                         for (i__ = 1; i__ <= i__1; ++i__)
                         {
                             utmn13_c(&i__, x, &ip);
+                            X[i__-1] = ip;
                             if (ip == 0)
                             {
                                 goto L2;
@@ -61,11 +63,6 @@ namespace LargeScaleOptimization.Algorithms
                         }
 
                         min = (long) z__;
-                        X = new long[nxValue.Length];
-                        for (int i = 0; i < X.Length; i++)
-                        {
-                            X[i] = xs[i];
-                        }
                     }
                 }
             }
