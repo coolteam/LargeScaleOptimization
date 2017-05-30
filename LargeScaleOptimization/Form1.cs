@@ -37,7 +37,14 @@ namespace LargeScaleOptimization
 
         private void BalashBoolButton_Click(object sender, EventArgs e)
         {
-
+            var sg = new SimpleGenerator();
+            sg.SetSize(20, 20);
+            //sg.Generate();
+            var bba = new BalashBoolAlgorithm();
+            //ga.SetMax(-10);
+            //rvba.SetMainInputData(sg.A, sg.B, sg.C, sg.X);
+            var result = bba.CalcResult();
+            richTextBox1.Text = bba.FormatResultAsString(result);
         }
 
         private int[] VectopPack(int[] a)

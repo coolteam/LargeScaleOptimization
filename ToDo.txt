@@ -1,4 +1,4 @@
-1)finish Balash algo
+1)done
 2)test Balash algo
 3)finish Reduce vector integer - not feasible solution
 4)finish Reduce vector integer - timeout
