@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using LargeScaleOptimization.Enum;
 
 namespace LargeScaleOptimization.Algorithms
@@ -216,7 +215,7 @@ namespace LargeScaleOptimization.Algorithms
             return 0;
         }
 
-        private unsafe int mnr3l_c(long* js, long* s, double* xs)
+        private unsafe int mnr3l_c(long* js, long* s, long* xs)
         {
             /* Initialized data */
 
@@ -249,7 +248,7 @@ namespace LargeScaleOptimization.Algorithms
                     goto L1;
                 }
                 j1 -= cofz;
-//                utmn12_c(&j1, &xs[1]);
+                utmn12_c(&j1, &xs[1]);
                 L1:
                 ;
             }
@@ -261,12 +260,12 @@ namespace LargeScaleOptimization.Algorithms
             {
                 goto L3;
             }
-//            utmn12_c(&j1, &xs[1]);
+            utmn12_c(&j1, &xs[1]);
             js[*s] = -(js[*s] + cofz);
             goto L4;
             L3:
             js[*s] = -(js[*s] - cofz);
-//            utmn11_c(&j1, &xs[1]);
+            utmn11_c(&j1, &xs[1]);
             L4:
             return 0;
         }
@@ -358,6 +357,161 @@ namespace LargeScaleOptimization.Algorithms
                 ns[*in0] = j;
                 L3:
                 ;
+            }
+            return 0;
+        }
+
+        private unsafe int mnr3o_c(long* js, long* s, double* dif, long* iy,
+            long* ns, long* ny, long* in0, double* a, int* na,
+            double* c__, int* nc, long* n, long* xs, long* pr, double* eps)
+        {
+            /* System generated locals */
+            long i__1, i__2;
+            double r__1;
+
+            /* Local variables */
+            double d__;
+            long i__, j, k, l;
+            long i1, j1, l1, la, pr1, pr2;
+
+            /*  ПEPBAЯ ПOПЫTKA PACШИPEHИЯ ЧACTИЧHOГO */
+            /*  PEШEH */
+            /* Parameter adjustments */
+            --js;
+            --dif;
+            --ns;
+            --a;
+            --na;
+            --nc;
+            --c__;
+            --ny;
+            --xs;
+
+            /* Function Body */
+            l = 1;
+            j1 = 1;
+            *pr = 0;
+            i__1 = *n;
+            for (j = 1; j <= i__1; ++j)
+            {
+                k = nc[j];
+                if (ns[j1] > j)
+                {
+                    goto L10;
+                }
+                i1 = 1;
+                la = l;
+                pr1 = 0;
+                pr2 = 0;
+                i__2 = k;
+                for (i__ = 1; i__ <= i__2; ++i__)
+                {
+                    l1 = na[la];
+                    L1:
+                    if (ny[i1] > l1)
+                    {
+                        goto L4;
+                    }
+                    if (ny[i1] < l1)
+                    {
+                        goto L3;
+                    }
+                    r__1 = a[la];
+                    d__ = dif[i1] - (Math.Abs(r__1));
+                    if (d__ >= *eps)
+                    {
+                        goto L3;
+                    }
+                    if (a[la] < 0d)
+                    {
+                        goto L2;
+                    }
+                    pr2 = 1;
+                    goto L3;
+                    L2:
+                    pr1 = 1;
+                    L3:
+                    ++i1;
+                    if (i1 > *iy)
+                    {
+                        goto L5;
+                    }
+                    goto L1;
+                    L4:
+                    ++la;
+                }
+                L5:
+                if (pr1 == 1 && pr2 == 0)
+                {
+                    goto L6;
+                }
+                if (pr1 == 0 && pr2 == 1)
+                {
+                    goto L7;
+                }
+                goto L9;
+                L6:
+                utmn11_c(&j, &xs[1]);
+                ++(*s);
+                js[*s] = j;
+                *pr = 1;
+                goto L12;
+                L7:
+                utmn12_c(&j, &xs[1]);
+                ++(*s);
+                js[*s] = -j;
+/* L8: */
+                *pr = 1;
+                L9:
+                ++j1;
+                if (j1 > *in0)
+                {
+                    goto L12;
+                }
+                L10:
+                l += k;
+/* L11: */
+            }
+            L12:
+            return 0;
+        }
+
+        private unsafe int utmn11_c(long* j, long* sh) //possible bug
+            // Записываем 1 в позицию J битовой шкалы SH
+        {
+            long n, shs;
+            shs = 8*sizeof (long);
+            n = (*j - 1);
+            int m = (int) (n%shs);
+            sh[n/shs] |= (1L << m);
+            return 0;
+        }
+
+        private unsafe int utmn12_c(long* j, long* sh) //possible bug
+            // Записываем 0 в позицию J битовой шкалы SH
+        {
+            long n, shs;
+            shs = 8*sizeof (long);
+            n = (*j - 1);
+            int m = (int) (n%shs);
+            sh[n/shs] &= ~(1L << m);
+            return 0;
+        }
+
+        private unsafe int utmn13_c(long* j, long* sh, long* pr)
+            // Переменной PR присваиваем значение бита в позиции J шкалы SH
+        {
+            long n, shs;
+            shs = 8*sizeof (long);
+            n = (*j - 1);
+            int m = (int) (n%shs);
+            if ((sh[n/shs] & (1L << m))!=0)//todo test
+            {
+                *pr = 1;
+            }
+            else
+            {
+                *pr = 0;
             }
             return 0;
         }
