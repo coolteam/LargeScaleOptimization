@@ -246,6 +246,22 @@ namespace LargeScaleOptimization
             return "("+ string.Join(",",x)+ "); ";
         }
 
-        
+        private void buttonGenerateGrid_Click(object sender, EventArgs e)
+        {
+            var n = (int) nSize.Value;
+            var m = (int)nSize.Value;
+            inputGrid.ColumnCount = 2*n + 2;
+            inputGrid.RowCount = m;
+            for (var i = 0; i < 2*n; i += 2)
+            {
+                inputGrid.Columns[i ].ReadOnly = false;
+                inputGrid.Columns[i + 1].ReadOnly = true;
+                inputGrid[i, 0].Value = 0;
+                inputGrid[i+1, 0].Value = "x" + (i/2+1);
+            }
+            inputGrid.Columns[2*n].ReadOnly = true;
+            inputGrid[2*n, 0].Value = "<=";
+            inputGrid[2*n + 1, 0].Value = 0;
+        }
     }
 }

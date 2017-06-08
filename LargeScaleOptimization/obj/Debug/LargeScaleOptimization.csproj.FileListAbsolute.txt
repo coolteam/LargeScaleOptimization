@@ -25,3 +25,4 @@ D:\Studing\XII-term\Diploma\Projects\LargeScaleOptimization\LargeScaleOptimizati
 D:\Studing\XII-term\Diploma\Projects\LargeScaleOptimization\LargeScaleOptimization\LargeScaleOptimization\bin\Debug\LargeScaleOptimization.pdb
 D:\Studing\XII-term\Diploma\Projects\LargeScaleOptimization\LargeScaleOptimization\LargeScaleOptimization\obj\Debug\LargeScaleOptimization.exe
 D:\Studing\XII-term\Diploma\Projects\LargeScaleOptimization\LargeScaleOptimization\LargeScaleOptimization\obj\Debug\LargeScaleOptimization.pdb
+D:\Studing\XII-term\Diploma\Projects\LargeScaleOptimization\LargeScaleOptimization\LargeScaleOptimization\bin\Debug\LpSolveDotNet.dll
