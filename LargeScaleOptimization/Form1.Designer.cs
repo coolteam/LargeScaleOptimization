@@ -34,6 +34,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.reduceVectorBoolButton = new System.Windows.Forms.Button();
             this.BalashBoolButton = new System.Windows.Forms.Button();
+            this.buttonTestLPSolve = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // reduceVectorIntegerButton
@@ -107,11 +108,24 @@
             this.BalashBoolButton.UseVisualStyleBackColor = true;
             this.BalashBoolButton.Click += new System.EventHandler(this.BalashBoolButton_Click);
             // 
+            // buttonTestLPSolve
+            // 
+            this.buttonTestLPSolve.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonTestLPSolve.Location = new System.Drawing.Point(276, 251);
+            this.buttonTestLPSolve.Name = "buttonTestLPSolve";
+            this.buttonTestLPSolve.Size = new System.Drawing.Size(138, 41);
+            this.buttonTestLPSolve.TabIndex = 6;
+            this.buttonTestLPSolve.Text = "test LPSolve";
+            this.buttonTestLPSolve.UseVisualStyleBackColor = true;
+            this.buttonTestLPSolve.Click += new System.EventHandler(this.buttonTestLPSolve_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(598, 355);
+            this.Controls.Add(this.buttonTestLPSolve);
             this.Controls.Add(this.BalashBoolButton);
             this.Controls.Add(this.reduceVectorBoolButton);
             this.Controls.Add(this.button1);
@@ -132,6 +146,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button reduceVectorBoolButton;
         private System.Windows.Forms.Button BalashBoolButton;
+        private System.Windows.Forms.Button buttonTestLPSolve;
     }
 }
 

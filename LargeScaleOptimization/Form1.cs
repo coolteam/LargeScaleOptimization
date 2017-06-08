@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using LargeScaleOptimization.Algorithms;
+using LpSolveDotNet;
 
 namespace LargeScaleOptimization
 {
@@ -33,6 +34,31 @@ namespace LargeScaleOptimization
             //rvba.SetMainInputData(sg.A, sg.B, sg.C, sg.X);
             var result = rvba.CalcResult();
             richTextBox1.Text = rvba.FormatResultAsString(result);
+        }
+
+        private void buttonTestLPSolve_Click(object sender, EventArgs e)
+        {
+            var a = LpSolve.read_MPS("neos16.mps", 1);
+            var n = a.get_Nrows();
+            var m = a.get_Norig_columns();
+            var c = a.get_rh(90);
+            double[] test = new double[m + 1];
+            for (var i = 0; i < n; ++i)
+            {
+                var en = a.get_rh(i);
+                var es = a.get_row(i, test);
+                if (a.get_rh(i) != 0)
+                {
+
+                    var d = a.get_rh(i);
+                }
+            }
+            var sd = a.solve();
+            var fs = a.get_objective();
+            double[] x = new double[m];
+            a.get_variables(x);
+            a.set_outputfile("log.txt");
+            a.print_scales();
         }
 
         private void BalashBoolButton_Click(object sender, EventArgs e)
