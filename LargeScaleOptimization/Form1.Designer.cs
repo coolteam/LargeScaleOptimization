@@ -38,20 +38,20 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.buttonGenerateGrid = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.nSize = new System.Windows.Forms.NumericUpDown();
+            this.inputCGrid = new System.Windows.Forms.DataGridView();
+            this.inputAGrid = new System.Windows.Forms.DataGridView();
             this.mSize = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
-            this.inputAGrid = new System.Windows.Forms.DataGridView();
-            this.inputCGrid = new System.Windows.Forms.DataGridView();
+            this.nSize = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
+            this.buttonGenerateGrid = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nSize)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mSize)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.inputAGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputCGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inputAGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mSize)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nSize)).BeginInit();
             this.SuspendLayout();
             // 
             // reduceVectorIntegerButton
@@ -178,25 +178,57 @@
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // buttonGenerateGrid
+            // inputCGrid
             // 
-            this.buttonGenerateGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonGenerateGrid.Location = new System.Drawing.Point(6, 67);
-            this.buttonGenerateGrid.Name = "buttonGenerateGrid";
-            this.buttonGenerateGrid.Size = new System.Drawing.Size(183, 41);
-            this.buttonGenerateGrid.TabIndex = 5;
-            this.buttonGenerateGrid.Text = "GenerateGrid";
-            this.buttonGenerateGrid.UseVisualStyleBackColor = true;
-            this.buttonGenerateGrid.Click += new System.EventHandler(this.buttonGenerateGrid_Click);
+            this.inputCGrid.AllowUserToAddRows = false;
+            this.inputCGrid.AllowUserToDeleteRows = false;
+            this.inputCGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.inputCGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.inputCGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.inputCGrid.ColumnHeadersVisible = false;
+            this.inputCGrid.Location = new System.Drawing.Point(196, 13);
+            this.inputCGrid.Name = "inputCGrid";
+            this.inputCGrid.RowHeadersVisible = false;
+            this.inputCGrid.Size = new System.Drawing.Size(676, 48);
+            this.inputCGrid.TabIndex = 11;
             // 
-            // label1
+            // inputAGrid
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(13, 13);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "n";
+            this.inputAGrid.AllowUserToAddRows = false;
+            this.inputAGrid.AllowUserToDeleteRows = false;
+            this.inputAGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.inputAGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.inputAGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.inputAGrid.ColumnHeadersVisible = false;
+            this.inputAGrid.Location = new System.Drawing.Point(195, 67);
+            this.inputAGrid.Name = "inputAGrid";
+            this.inputAGrid.RowHeadersVisible = false;
+            this.inputAGrid.Size = new System.Drawing.Size(677, 232);
+            this.inputAGrid.TabIndex = 10;
+            // 
+            // mSize
+            // 
+            this.mSize.Location = new System.Drawing.Point(69, 41);
+            this.mSize.Name = "mSize";
+            this.mSize.Size = new System.Drawing.Size(120, 20);
+            this.mSize.TabIndex = 9;
+            this.mSize.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 41);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(15, 13);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "m";
             // 
             // nSize
             // 
@@ -210,56 +242,24 @@
             0,
             0});
             // 
-            // mSize
+            // label1
             // 
-            this.mSize.Location = new System.Drawing.Point(69, 39);
-            this.mSize.Name = "mSize";
-            this.mSize.Size = new System.Drawing.Size(120, 20);
-            this.mSize.TabIndex = 9;
-            this.mSize.Value = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(13, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "n";
             // 
-            // label2
+            // buttonGenerateGrid
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 39);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(15, 13);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "m";
-            // 
-            // inputAGrid
-            // 
-            this.inputAGrid.AllowUserToAddRows = false;
-            this.inputAGrid.AllowUserToDeleteRows = false;
-            this.inputAGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.inputAGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            this.inputAGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.inputAGrid.ColumnHeadersVisible = false;
-            this.inputAGrid.Location = new System.Drawing.Point(195, 39);
-            this.inputAGrid.Name = "inputAGrid";
-            this.inputAGrid.RowHeadersVisible = false;
-            this.inputAGrid.Size = new System.Drawing.Size(677, 260);
-            this.inputAGrid.TabIndex = 10;
-            // 
-            // inputCGrid
-            // 
-            this.inputCGrid.AllowUserToAddRows = false;
-            this.inputCGrid.AllowUserToDeleteRows = false;
-            this.inputCGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.inputCGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            this.inputCGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.inputCGrid.ColumnHeadersVisible = false;
-            this.inputCGrid.Location = new System.Drawing.Point(196, 13);
-            this.inputCGrid.Name = "inputCGrid";
-            this.inputCGrid.RowHeadersVisible = false;
-            this.inputCGrid.Size = new System.Drawing.Size(676, 20);
-            this.inputCGrid.TabIndex = 11;
+            this.buttonGenerateGrid.Location = new System.Drawing.Point(6, 67);
+            this.buttonGenerateGrid.Name = "buttonGenerateGrid";
+            this.buttonGenerateGrid.Size = new System.Drawing.Size(183, 41);
+            this.buttonGenerateGrid.TabIndex = 5;
+            this.buttonGenerateGrid.Text = "GenerateGrid";
+            this.buttonGenerateGrid.UseVisualStyleBackColor = true;
+            this.buttonGenerateGrid.Click += new System.EventHandler(this.buttonGenerateGrid_Click);
             // 
             // Form1
             // 
@@ -273,10 +273,10 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nSize)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mSize)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.inputAGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputCGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inputAGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mSize)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nSize)).EndInit();
             this.ResumeLayout(false);
 
         }
