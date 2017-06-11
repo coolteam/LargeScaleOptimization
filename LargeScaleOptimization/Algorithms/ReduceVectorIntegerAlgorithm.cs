@@ -15,7 +15,6 @@ namespace LargeScaleOptimization.Algorithms
             var dict = new Dictionary<long[], long>();
             while (needContinue)
             {
-               // var dict = new Dictionary<int[], int>();
                 var tmpX = GetFeasibleSolution1(ref dict);
                 if (tmpX == null)
                 {
