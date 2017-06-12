@@ -54,7 +54,18 @@
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.buttonSolveTab1 = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBoxResultTab1 = new System.Windows.Forms.ListBox();
+            this.listBoxResultTab2 = new System.Windows.Forms.ListBox();
+            this.buttonStoreTab2 = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.numericUpDownMTab2 = new System.Windows.Forms.NumericUpDown();
+            this.label3 = new System.Windows.Forms.Label();
+            this.numericUpDownNTab2 = new System.Windows.Forms.NumericUpDown();
+            this.label4 = new System.Windows.Forms.Label();
+            this.buttonGenerateProblemTab2 = new System.Windows.Forms.Button();
+            this.radioButtonILPTab2 = new System.Windows.Forms.RadioButton();
+            this.radioButtonBLPTab2 = new System.Windows.Forms.RadioButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -62,6 +73,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.inputAGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nSize)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMTab2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNTab2)).BeginInit();
             this.SuspendLayout();
             // 
             // reduceVectorIntegerButton
@@ -180,7 +196,7 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.listBox1);
+            this.tabPage2.Controls.Add(this.listBoxResultTab1);
             this.tabPage2.Controls.Add(this.buttonSolveTab1);
             this.tabPage2.Controls.Add(this.comboBox1);
             this.tabPage2.Controls.Add(this.inputCGrid);
@@ -283,9 +299,20 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.radioButtonBLPTab2);
+            this.tabPage3.Controls.Add(this.radioButtonILPTab2);
+            this.tabPage3.Controls.Add(this.listBoxResultTab2);
+            this.tabPage3.Controls.Add(this.buttonStoreTab2);
+            this.tabPage3.Controls.Add(this.dataGridView1);
+            this.tabPage3.Controls.Add(this.dataGridView2);
+            this.tabPage3.Controls.Add(this.numericUpDownMTab2);
+            this.tabPage3.Controls.Add(this.label3);
+            this.tabPage3.Controls.Add(this.numericUpDownNTab2);
+            this.tabPage3.Controls.Add(this.label4);
+            this.tabPage3.Controls.Add(this.buttonGenerateProblemTab2);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(878, 305);
+            this.tabPage3.Size = new System.Drawing.Size(878, 383);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Генер. Вх.Д";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -369,15 +396,138 @@
             this.buttonSolveTab1.UseVisualStyleBackColor = true;
             this.buttonSolveTab1.Click += new System.EventHandler(this.buttonSolveTab1_Click);
             // 
-            // listBox1
+            // listBoxResultTab1
             // 
-            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.listBoxResultTab1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(9, 190);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(180, 186);
-            this.listBox1.TabIndex = 14;
+            this.listBoxResultTab1.FormattingEnabled = true;
+            this.listBoxResultTab1.Location = new System.Drawing.Point(9, 190);
+            this.listBoxResultTab1.Name = "listBoxResultTab1";
+            this.listBoxResultTab1.Size = new System.Drawing.Size(180, 186);
+            this.listBoxResultTab1.TabIndex = 14;
+            // 
+            // listBoxResultTab2
+            // 
+            this.listBoxResultTab2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.listBoxResultTab2.FormattingEnabled = true;
+            this.listBoxResultTab2.Location = new System.Drawing.Point(9, 212);
+            this.listBoxResultTab2.Name = "listBoxResultTab2";
+            this.listBoxResultTab2.Size = new System.Drawing.Size(180, 160);
+            this.listBoxResultTab2.TabIndex = 24;
+            // 
+            // buttonStoreTab2
+            // 
+            this.buttonStoreTab2.Location = new System.Drawing.Point(9, 165);
+            this.buttonStoreTab2.Name = "buttonStoreTab2";
+            this.buttonStoreTab2.Size = new System.Drawing.Size(180, 41);
+            this.buttonStoreTab2.TabIndex = 23;
+            this.buttonStoreTab2.Text = "Зберегти для розв\'язку";
+            this.buttonStoreTab2.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.ColumnHeadersVisible = false;
+            this.dataGridView1.Location = new System.Drawing.Point(196, 9);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.Size = new System.Drawing.Size(676, 48);
+            this.dataGridView1.TabIndex = 21;
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.AllowUserToDeleteRows = false;
+            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.ColumnHeadersVisible = false;
+            this.dataGridView2.Location = new System.Drawing.Point(195, 63);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.RowHeadersVisible = false;
+            this.dataGridView2.Size = new System.Drawing.Size(677, 310);
+            this.dataGridView2.TabIndex = 20;
+            // 
+            // numericUpDownMTab2
+            // 
+            this.numericUpDownMTab2.Location = new System.Drawing.Point(69, 37);
+            this.numericUpDownMTab2.Name = "numericUpDownMTab2";
+            this.numericUpDownMTab2.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDownMTab2.TabIndex = 19;
+            this.numericUpDownMTab2.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 37);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(15, 13);
+            this.label3.TabIndex = 18;
+            this.label3.Text = "m";
+            // 
+            // numericUpDownNTab2
+            // 
+            this.numericUpDownNTab2.Location = new System.Drawing.Point(69, 9);
+            this.numericUpDownNTab2.Name = "numericUpDownNTab2";
+            this.numericUpDownNTab2.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDownNTab2.TabIndex = 17;
+            this.numericUpDownNTab2.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 9);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(13, 13);
+            this.label4.TabIndex = 16;
+            this.label4.Text = "n";
+            // 
+            // buttonGenerateProblemTab2
+            // 
+            this.buttonGenerateProblemTab2.Location = new System.Drawing.Point(9, 64);
+            this.buttonGenerateProblemTab2.Name = "buttonGenerateProblemTab2";
+            this.buttonGenerateProblemTab2.Size = new System.Drawing.Size(180, 41);
+            this.buttonGenerateProblemTab2.TabIndex = 15;
+            this.buttonGenerateProblemTab2.Text = "Генерувати";
+            this.buttonGenerateProblemTab2.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonILPTab2
+            // 
+            this.radioButtonILPTab2.AutoSize = true;
+            this.radioButtonILPTab2.Checked = true;
+            this.radioButtonILPTab2.Location = new System.Drawing.Point(9, 112);
+            this.radioButtonILPTab2.Name = "radioButtonILPTab2";
+            this.radioButtonILPTab2.Size = new System.Drawing.Size(49, 17);
+            this.radioButtonILPTab2.TabIndex = 25;
+            this.radioButtonILPTab2.TabStop = true;
+            this.radioButtonILPTab2.Text = "ЦЛП";
+            this.radioButtonILPTab2.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonBLPTab2
+            // 
+            this.radioButtonBLPTab2.AutoSize = true;
+            this.radioButtonBLPTab2.Location = new System.Drawing.Point(9, 135);
+            this.radioButtonBLPTab2.Name = "radioButtonBLPTab2";
+            this.radioButtonBLPTab2.Size = new System.Drawing.Size(48, 17);
+            this.radioButtonBLPTab2.TabIndex = 26;
+            this.radioButtonBLPTab2.Text = "БЛП";
+            this.radioButtonBLPTab2.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -395,6 +545,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.inputAGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mSize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nSize)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMTab2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNTab2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -427,7 +583,18 @@
         private System.Windows.Forms.TabPage tabPage8;
         private System.Windows.Forms.TabPage tabPage9;
         private System.Windows.Forms.Button buttonSolveTab1;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listBoxResultTab1;
+        private System.Windows.Forms.RadioButton radioButtonBLPTab2;
+        private System.Windows.Forms.RadioButton radioButtonILPTab2;
+        private System.Windows.Forms.ListBox listBoxResultTab2;
+        private System.Windows.Forms.Button buttonStoreTab2;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.NumericUpDown numericUpDownMTab2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.NumericUpDown numericUpDownNTab2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button buttonGenerateProblemTab2;
     }
 }
 
