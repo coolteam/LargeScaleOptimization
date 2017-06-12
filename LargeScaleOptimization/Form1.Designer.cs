@@ -44,7 +44,17 @@
             this.label2 = new System.Windows.Forms.Label();
             this.nSize = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
-            this.buttonGenerateGrid = new System.Windows.Forms.Button();
+            this.buttonGenerateGridTab1 = new System.Windows.Forms.Button();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.buttonSolveTab1 = new System.Windows.Forms.Button();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -138,10 +148,17 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage5);
+            this.tabControl1.Controls.Add(this.tabPage6);
+            this.tabControl1.Controls.Add(this.tabPage7);
+            this.tabControl1.Controls.Add(this.tabPage8);
+            this.tabControl1.Controls.Add(this.tabPage9);
             this.tabControl1.Location = new System.Drawing.Point(13, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(886, 331);
+            this.tabControl1.Size = new System.Drawing.Size(886, 409);
             this.tabControl1.TabIndex = 7;
             // 
             // tabPage1
@@ -158,24 +175,27 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(878, 305);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.Text = "-";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.listBox1);
+            this.tabPage2.Controls.Add(this.buttonSolveTab1);
+            this.tabPage2.Controls.Add(this.comboBox1);
             this.tabPage2.Controls.Add(this.inputCGrid);
             this.tabPage2.Controls.Add(this.inputAGrid);
             this.tabPage2.Controls.Add(this.mSize);
             this.tabPage2.Controls.Add(this.label2);
             this.tabPage2.Controls.Add(this.nSize);
             this.tabPage2.Controls.Add(this.label1);
-            this.tabPage2.Controls.Add(this.buttonGenerateGrid);
+            this.tabPage2.Controls.Add(this.buttonGenerateGridTab1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(878, 305);
+            this.tabPage2.Size = new System.Drawing.Size(878, 383);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.Text = "Тест МР";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // inputCGrid
@@ -206,7 +226,7 @@
             this.inputAGrid.Location = new System.Drawing.Point(195, 67);
             this.inputAGrid.Name = "inputAGrid";
             this.inputAGrid.RowHeadersVisible = false;
-            this.inputAGrid.Size = new System.Drawing.Size(677, 232);
+            this.inputAGrid.Size = new System.Drawing.Size(677, 310);
             this.inputAGrid.TabIndex = 10;
             // 
             // mSize
@@ -251,21 +271,119 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "n";
             // 
-            // buttonGenerateGrid
+            // buttonGenerateGridTab1
             // 
-            this.buttonGenerateGrid.Location = new System.Drawing.Point(6, 67);
-            this.buttonGenerateGrid.Name = "buttonGenerateGrid";
-            this.buttonGenerateGrid.Size = new System.Drawing.Size(183, 41);
-            this.buttonGenerateGrid.TabIndex = 5;
-            this.buttonGenerateGrid.Text = "GenerateGrid";
-            this.buttonGenerateGrid.UseVisualStyleBackColor = true;
-            this.buttonGenerateGrid.Click += new System.EventHandler(this.buttonGenerateGrid_Click);
+            this.buttonGenerateGridTab1.Location = new System.Drawing.Point(9, 68);
+            this.buttonGenerateGridTab1.Name = "buttonGenerateGridTab1";
+            this.buttonGenerateGridTab1.Size = new System.Drawing.Size(180, 41);
+            this.buttonGenerateGridTab1.TabIndex = 5;
+            this.buttonGenerateGridTab1.Text = "Генерувати";
+            this.buttonGenerateGridTab1.UseVisualStyleBackColor = true;
+            this.buttonGenerateGridTab1.Click += new System.EventHandler(this.buttonGenerateGrid_Click);
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(878, 305);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Генер. Вх.Д";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(878, 305);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Зчит. Вх.Д.";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(878, 305);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "Тест ВР";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // tabPage6
+            // 
+            this.tabPage6.Location = new System.Drawing.Point(4, 22);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Size = new System.Drawing.Size(878, 305);
+            this.tabPage6.TabIndex = 5;
+            this.tabPage6.Text = "Гр. Ч-Р";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // tabPage7
+            // 
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Size = new System.Drawing.Size(878, 305);
+            this.tabPage7.TabIndex = 6;
+            this.tabPage7.Text = "Гр. Т-Р";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // tabPage8
+            // 
+            this.tabPage8.Location = new System.Drawing.Point(4, 22);
+            this.tabPage8.Name = "tabPage8";
+            this.tabPage8.Size = new System.Drawing.Size(878, 305);
+            this.tabPage8.TabIndex = 7;
+            this.tabPage8.Text = "Гр. Т-Ч";
+            this.tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // tabPage9
+            // 
+            this.tabPage9.Location = new System.Drawing.Point(4, 22);
+            this.tabPage9.Name = "tabPage9";
+            this.tabPage9.Size = new System.Drawing.Size(878, 305);
+            this.tabPage9.TabIndex = 8;
+            this.tabPage9.Text = "Про";
+            this.tabPage9.UseVisualStyleBackColor = true;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DisplayMember = "0";
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Цілочисельний алгоритм МВС",
+            "Алгоритм Гоморі",
+            "Булевий алгоритм МВС",
+            "Алгоритм Балаша"});
+            this.comboBox1.Location = new System.Drawing.Point(9, 115);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(180, 21);
+            this.comboBox1.TabIndex = 12;
+            this.comboBox1.Text = "Вибір алгоритму:";
+            // 
+            // buttonSolveTab1
+            // 
+            this.buttonSolveTab1.Location = new System.Drawing.Point(9, 143);
+            this.buttonSolveTab1.Name = "buttonSolveTab1";
+            this.buttonSolveTab1.Size = new System.Drawing.Size(180, 41);
+            this.buttonSolveTab1.TabIndex = 13;
+            this.buttonSolveTab1.Text = "Розв\'язати";
+            this.buttonSolveTab1.UseVisualStyleBackColor = true;
+            this.buttonSolveTab1.Click += new System.EventHandler(this.buttonSolveTab1_Click);
+            // 
+            // listBox1
+            // 
+            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(9, 190);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(180, 186);
+            this.listBox1.TabIndex = 14;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(911, 354);
+            this.ClientSize = new System.Drawing.Size(911, 432);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "RVM Solver";
@@ -298,8 +416,18 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown nSize;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button buttonGenerateGrid;
+        private System.Windows.Forms.Button buttonGenerateGridTab1;
         private System.Windows.Forms.DataGridView inputCGrid;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.TabPage tabPage8;
+        private System.Windows.Forms.TabPage tabPage9;
+        private System.Windows.Forms.Button buttonSolveTab1;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }
 
