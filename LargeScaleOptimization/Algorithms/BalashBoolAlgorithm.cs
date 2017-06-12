@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using LargeScaleOptimization.Enum;
 
 namespace LargeScaleOptimization.Algorithms
@@ -18,6 +19,20 @@ namespace LargeScaleOptimization.Algorithms
                 -1d, 1d, 1d, -1d, -1d, 1d, 1d, -1d, -1d, 1d, 1d, -1d, -1d
             };
             int[] naValue = {1, 2, 5, 6, 1, 3, 5, 7, 2, 3, 6, 7, 1, 4, 5, 8, 2, 4, 6, 8, 3, 4, 7, 8};
+            A = new long[,]
+            {
+                {1, 1, 0, 1, 0, 0}, 
+                {1, 0, 1, 0, 1, 0}, 
+                {0, 1, 1, 0, 0, 1}, 
+                {0, 0, 0, 1, 1, 1}, 
+                {-1, -1, 0, -1, 0, 0}, 
+                {-1, 0, -1, 0, -1, 0},
+                {0, -1, -1, 0, 0, -1}, 
+                {0, 0, 0, -1, -1, -1}
+            };
+            var na2 = CreateNA(A);
+            var nc2 = CreateNC(A);
+            var a2 = CreateA(A);
             long[] xsValue = {0};
 
             /* System generated locals */
@@ -76,6 +91,55 @@ namespace LargeScaleOptimization.Algorithms
             return result;
         }
 
+        private long[] CreateA(long[,] matrixA)
+        {
+            var a = new List<long>();
+            var n = matrixA.GetLength(1);
+            var m = matrixA.GetLength(0);
+            for (var i = 0; i < n; ++i)
+            {
+                for (var j = 0; j < m; ++j)
+                {
+                    if (matrixA[j, i] != 0)
+                        a.Add(matrixA[j, i]);
+                }
+            }
+            return a.ToArray();
+        }
+
+        private int[] CreateNA(long [,] matrixA)
+        {
+            var na = new List<int>();
+            var n = matrixA.GetLength(1);
+            var m = matrixA.GetLength(0);
+            for (var i = 0; i < n; ++i)
+            {
+                for (var j = 0; j < m; ++j)
+                {
+                    if (matrixA[j, i] != 0)
+                        na.Add(j + 1);
+                }
+            }
+            return na.ToArray();
+        }
+
+        private int[] CreateNC(long[,] matrixA)
+        {
+            var nc = new List<int>();
+            var n = matrixA.GetLength(1);
+            var m = matrixA.GetLength(0);
+            for (var i = 0; i < n; ++i)
+            {
+                var count = 0;
+                for (var j = 0; j < m; ++j)
+                {
+                    if (matrixA[j, i] != 0)
+                        ++count;
+                }
+                nc.Add(count);
+            }
+            return nc.ToArray();
+        }
 
         private unsafe int mnr3c_c(long* js, long* s, long* s1, double* y, long* m, double* a, int* na, double* c__,
             int* nc, long* n)
