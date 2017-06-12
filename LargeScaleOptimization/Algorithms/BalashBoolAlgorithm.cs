@@ -9,46 +9,43 @@ namespace LargeScaleOptimization.Algorithms
 
         public override unsafe OptimizationResult CalcResult()
         {
+            long n = A.GetLength(1);
+            long m = A.GetLength(0);
             /* Initialized data */
-            double[] bValue = {2d, 2d, 2d, 2d, -1d, -1d, -1d, -1d};
-            double[] cValue = {1d, 1d, 1d, 1d, 1d, 1d};
-            int[] ncValue = {4, 4, 4, 4, 4, 4};
-            double[] aValue =
+            double[] bValue = new double[B.Length];
+            for (var i = 0; i < B.Length; ++i)
             {
-                1d, 1d, -1d, -1d, 1d, 1d, -1d, -1d, 1d, 1d, -1d,
-                -1d, 1d, 1d, -1d, -1d, 1d, 1d, -1d, -1d, 1d, 1d, -1d, -1d
-            };
-            int[] naValue = {1, 2, 5, 6, 1, 3, 5, 7, 2, 3, 6, 7, 1, 4, 5, 8, 2, 4, 6, 8, 3, 4, 7, 8};
-            A = new long[,]
+                bValue[i] = B[i];
+            }
+            double[] cValue = new double[C.Length];
+            for (var i = 0; i < C.Length; ++i)
             {
-                {1, 1, 0, 1, 0, 0}, 
-                {1, 0, 1, 0, 1, 0}, 
-                {0, 1, 1, 0, 0, 1}, 
-                {0, 0, 0, 1, 1, 1}, 
-                {-1, -1, 0, -1, 0, 0}, 
-                {-1, 0, -1, 0, -1, 0},
-                {0, -1, -1, 0, 0, -1}, 
-                {0, 0, 0, -1, -1, -1}
-            };
-            var na2 = CreateNA(A);
-            var nc2 = CreateNC(A);
-            var a2 = CreateA(A);
-            long[] xsValue = {0};
+                cValue[i] = C[i];
+            }
+            int[] ncValue = CreateNC(A);
+            long[] intA = CreateA(A);
+            double[] aValue = new double[intA.Length];
+            for (var i = 0; i < intA.Length; ++i)
+            {
+                aValue[i] = intA[i];
+            }
+            int[] naValue = CreateNA(A);
+            
 
             /* System generated locals */
             long i__1;
             /* Local variables */
-            long i__, k, m, n, s, ip;
-            long[] xValue = new long[1];
+            long i__, k,  s, ip;
+            long xLen = (n + 31)/32;
+            long[] xValue = new long[xLen];
+            long[] xsValue = new long[xLen];
             double z__,zs,eps;
-            double[] yValue = new double[8];
-            long[] nxValue = new long[6];
-            long[] nyValue = new long[8];
-            double[] difValue = new double[8];
+            double[] yValue = new double[m];
+            long[] nxValue = new long[n];
+            long[] nyValue = new long[m];
+            double[] difValue = new double[m];
 
             long ierr = 0, min = 0;
-            m = 8;
-            n = 6;
             s = 0;
             eps = 1e-5d;
             fixed (long* x = &(xValue[0]), xs = &(xsValue[0]), ny = &(nyValue[0]), nx = &(nxValue[0]))

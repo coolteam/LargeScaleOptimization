@@ -13,9 +13,9 @@ namespace LargeScaleOptimization.Algorithms
             /* Initialized data */
             long[] a1Value = ConvertA();
             long[] c1Value = ConvertC();
-            long n = 4;
-            long m = 2;
-            long q = 1;
+            long n = A.GetLength(1);
+            long m = A.GetLength(0);
+            long q = 0;//1
             double[] upValue = {600d, 1d};
 
             /* Local variables */
