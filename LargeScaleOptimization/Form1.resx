@@ -117,4 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="textBox1.Text" xml:space="preserve">
+    <value>Програма призначена для тестування цілочисельного та булевого алгоритмів методу вектора спаду. Також вона дозволяє знайти розв'язки за допомогою точних алгоритмів Гоморі та Балаша. Можливе ручне введення даних, генерація та зчитування відомих наборів тестових даних.</value>
+  </data>
 </root>

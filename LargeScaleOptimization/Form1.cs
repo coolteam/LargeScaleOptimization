@@ -260,5 +260,20 @@ namespace LargeScaleOptimization
                 MessageBox.Show(@"Спочатку потрібно згенерувати потрібного розміру гріди та заповнити їх", @"Info");
             }
         }
+
+        private void buttonStoreTab2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonGenerateProblemTab2_Click(object sender, EventArgs e)
+        {
+            int n = (int)numericUpDownNTab2.Value;
+            int m = (int)numericUpDownMTab2.Value;
+            var sg = new SimpleGenerator();
+            sg.SetSize(n,m);
+            sg.Generate();
+            var a = sg.A;
+        }
     }
 }
