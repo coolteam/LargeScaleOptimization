@@ -278,14 +278,12 @@ namespace LargeScaleOptimization
 
         private void buttonAutoCalcTab5_Click(object sender, EventArgs e)
         {
-            var maxS = 11;
+            var maxS = 21;
             var rc = (int)numericUpDownRecalcNo.Value;
             for (var i = 2; i < maxS; ++i)
             {
                 numericUpDownNTab2.Value = i;
                 numericUpDownMTab2.Value = i;
-                radioButtonBLPTab2.Checked = true;
-                radioButtonBLPTab2.Checked = false;
                 FormSetSize(i, i);
                 for (var j = 0; j < rc; ++j)
                 {
@@ -335,7 +333,7 @@ namespace LargeScaleOptimization
             chartTopTab5.Series["Series2"].Points.Clear();
             chartTopTab5.Series["Series1"].LegendText = "БАМВС";
             chartTopTab5.Series["Series2"].LegendText = "Балаша";
-            for (var i = 2; i < 11; ++i)
+            for (var i = 2; i < 21; ++i)
             {
                 var ticks0 = list.Where(x => x.N == i && x.M == i && x.Type == 0).Average(x => x.TimeDiff.Ticks);
                 var avgT0= TimeSpan.FromTicks((long)Math.Round(ticks0));
@@ -344,7 +342,7 @@ namespace LargeScaleOptimization
                 var avgT1 = TimeSpan.FromTicks((long)Math.Round(ticks1));
                 chartTopTab5.Series["Series2"].Points.AddXY(i,avgT1.TotalMilliseconds);
             }
-            chartTopTab5.ChartAreas[0].AxisY.IsLogarithmic = true;
+            chartTopTab5.ChartAreas[0].AxisY.IsLogarithmic = false;
             chartTopTab5.ChartAreas[0].AxisX.IsLogarithmic = false;
             chartTopTab5.Series["Series1"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
         }
