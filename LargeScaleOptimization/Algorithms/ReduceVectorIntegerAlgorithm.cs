@@ -13,9 +13,13 @@ namespace LargeScaleOptimization.Algorithms
             var needContinue = true;
             var n = X.Length;
             var dict = new Dictionary<long[], long>();
+            for (var i = 0; i < n; ++i)
+            {
+                X[i] = 0;
+            }
             while (needContinue)
             {
-                var tmpX = GetFeasibleSolution1(ref dict);
+                var tmpX = GetFeasibleSolution1();
                 if (tmpX == null)
                 {
                     tmpX = GetFeasibleSolution2(ref dict);
@@ -42,11 +46,14 @@ namespace LargeScaleOptimization.Algorithms
             return new OptimizationResult {Min = sum, X = X, ResultCode = CalculationResult.OptimalSolutionFound};
         }
 
-        public long[] GetFeasibleSolution1(ref  Dictionary<long[], long> dict)
+        public long[] GetFeasibleSolution1()
         {
             var n = X.Length;
             var m = B.Length;
             var x = new long[n];
+            var tmpX = new long[n];
+            var currentMin = 0l;
+            var isResult = false;
             Array.Copy(X,x,n);
             var r = 1l;
             var str = string.Empty;
@@ -62,31 +69,18 @@ namespace LargeScaleOptimization.Algorithms
                     if (SatisfyPositive(x,n) && SatisfyRestriction(x,n, m))
                     {
                         var delta = GetDelta(x);
-                        if (delta < 0)
+                        if (delta < currentMin)
                         {
-                            var tmp = new long[n];
-                            Array.Copy(x, tmp, n);
-                            dict.Add(tmp, delta);
+                            isResult = true;
+                            Array.Copy(x, tmpX, n);
+                            currentMin = delta;
                         }
                     }
                     //str += VectorToStr(x);
                     x[i] -= p1;
                 }
             }
-            if (dict.Count == 0)
-            {
-                return null;
-            }
-            var max = dict.Values.Min();
-            foreach (var el in dict)
-            {
-                if (el.Value == max)
-                {
-                    return el.Key;
-                }
-            }
-            
-            return null;
+            return isResult ? tmpX : null;
         }
 
         public long[] GetFeasibleSolution2(ref Dictionary<long[], long> dict)
@@ -94,6 +88,9 @@ namespace LargeScaleOptimization.Algorithms
             var n = X.Length;
             var m = B.Length;
             var x = new long[n];
+            var tmpX = new long[n];
+            var isResult = false;
+            var currentMin = 0l;
             Array.Copy(X, x, n);
             const int r = 2;
             var str = string.Empty;
@@ -165,6 +162,9 @@ namespace LargeScaleOptimization.Algorithms
             var n = X.Length;
             var m = B.Length;
             var x = new long[n];
+            var tmpX = new long[n];
+            var isResult = false;
+            var currentMin = 0l;
             Array.Copy(X, x, n);
             const long r = 3L;
             var str = string.Empty;
