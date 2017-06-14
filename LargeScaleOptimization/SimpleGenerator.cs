@@ -28,7 +28,7 @@ namespace LargeScaleOptimization
             X = new long[_n];
         }
 
-        public void Generate()
+        public void Generate(bool isBool =false)
         {
             X = new long[_n];
             A = new long[_m, _n];
@@ -36,8 +36,8 @@ namespace LargeScaleOptimization
             B = new long[_m];
             for (var i = 0; i < _n; ++i)
             {
-                X[i] = _rand.Next(0, 10);
-                C[i] = _rand.Next(-2, 0);
+                X[i] = _rand.Next(0, isBool?2:11);
+                C[i] =  _rand.Next(-2, 0);
             }
             for (long j = 0; j < _m; j++)
             {

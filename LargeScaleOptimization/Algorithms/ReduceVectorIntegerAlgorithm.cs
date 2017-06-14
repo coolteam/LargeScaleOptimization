@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using LargeScaleOptimization.Enum;
 
@@ -9,6 +10,7 @@ namespace LargeScaleOptimization.Algorithms
     {
         public override OptimizationResult CalcResult()
         {
+            var sw = Stopwatch.StartNew();
             var h = 0;
             var needContinue = true;
             var n = X.Length;
@@ -19,6 +21,7 @@ namespace LargeScaleOptimization.Algorithms
             }
             while (needContinue)
             {
+                ++h;
                 var tmpX = GetFeasibleSolution1();
                 if (tmpX == null)
                 {
@@ -43,7 +46,15 @@ namespace LargeScaleOptimization.Algorithms
             {
                 sum += C[i]*X[i];
             }
-            return new OptimizationResult {Min = sum, X = X, ResultCode = CalculationResult.OptimalSolutionFound};
+            var diff = sw.Elapsed;
+            return new OptimizationResult
+            {
+                Min = sum,
+                X = X,
+                ResultCode = CalculationResult.OptimalSolutionFound,
+                TimeDiff = diff,
+                IterCount = h
+            };
         }
 
         public long[] GetFeasibleSolution1()

@@ -51,7 +51,7 @@ namespace LargeScaleOptimization.Algorithms
             var result = optimizationResult.ResultCode.ToString();
             if (optimizationResult.ResultCode != CalculationResult.FeasibleSolutionNotFound)
             {
-                result += Environment.NewLine + "Max: " + optimizationResult.Min;
+                result += Environment.NewLine + "Min: " + optimizationResult.Min;
                 result += Environment.NewLine + "Solution: " + string.Join(",", optimizationResult.X);
             }
             return result;
@@ -63,5 +63,7 @@ namespace LargeScaleOptimization.Algorithms
         public long[] X;
         public long Min;
         public CalculationResult ResultCode;
+        public TimeSpan TimeDiff;
+        public long IterCount;
     }
 }

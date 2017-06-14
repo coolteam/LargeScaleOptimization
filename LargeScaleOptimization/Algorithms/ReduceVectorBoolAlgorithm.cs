@@ -10,6 +10,7 @@ namespace LargeScaleOptimization.Algorithms
 
         public override unsafe OptimizationResult CalcResult()
         {
+            var sw = System.Diagnostics.Stopwatch.StartNew();
             /* Initialized data */
             long[] a1Value = ConvertA();
             long[] c1Value = ConvertC();
@@ -36,12 +37,13 @@ namespace LargeScaleOptimization.Algorithms
                     mainPart(a, b, c, &ierr, &m, &min, &n, p, &q, up, x);
                 }
             }
-
+            var diff = sw.Elapsed;
             var result = new OptimizationResult
             {
                 X = X,
                 Min = min,
-                ResultCode = (CalculationResult) ierr
+                ResultCode = (CalculationResult) ierr,
+                TimeDiff = diff
             };
             var t = upValue[0];
             return result;

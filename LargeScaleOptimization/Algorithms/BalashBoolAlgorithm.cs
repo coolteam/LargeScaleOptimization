@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using LargeScaleOptimization.Enum;
 
 namespace LargeScaleOptimization.Algorithms
@@ -9,25 +10,26 @@ namespace LargeScaleOptimization.Algorithms
 
         public override unsafe OptimizationResult CalcResult()
         {
+            var sw = Stopwatch.StartNew();
             long n = A.GetLength(1);
             long m = A.GetLength(0);
             /* Initialized data */
             double[] bValue = new double[B.Length];
             for (var i = 0; i < B.Length; ++i)
             {
-                bValue[i] = B[i];
+                bValue[i] = -B[i];
             }
             double[] cValue = new double[C.Length];
             for (var i = 0; i < C.Length; ++i)
             {
-                cValue[i] = C[i];
+                cValue[i] = -C[i];
             }
             int[] ncValue = CreateNC(A);
             long[] intA = CreateA(A);
             double[] aValue = new double[intA.Length];
             for (var i = 0; i < intA.Length; ++i)
             {
-                aValue[i] = intA[i];
+                aValue[i] = -intA[i];
             }
             int[] naValue = CreateNA(A);
             
@@ -78,12 +80,13 @@ namespace LargeScaleOptimization.Algorithms
                     }
                 }
             }
-
+            var diff = sw.Elapsed;
             var result = new OptimizationResult
             {
                 X = X,
-                Min = min,
-                ResultCode = (CalculationResult) ierr
+                Min = -min,
+                ResultCode = (CalculationResult) ierr,
+                TimeDiff = diff
             };
             return result;
         }

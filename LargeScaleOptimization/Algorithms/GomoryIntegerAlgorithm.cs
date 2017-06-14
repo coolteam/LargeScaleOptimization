@@ -1,4 +1,5 @@
-﻿using LargeScaleOptimization.Enum;
+﻿using System.Diagnostics;
+using LargeScaleOptimization.Enum;
 
 namespace LargeScaleOptimization.Algorithms
 {
@@ -9,29 +10,32 @@ namespace LargeScaleOptimization.Algorithms
 
         public override unsafe OptimizationResult CalcResult()
         {
+            var sw = Stopwatch.StartNew();
             long[] aValue = CreateMatrixBarA();
             long m = B.Length + X.Length + 2;
             long n = X.Length + 1;
             long max = _max;
-            int ierr;
+            int ierr;long h=0;
             long[] mrValue = new long[2*B.Length + 2*X.Length];
             long min;
             var eps = _eps;
             fixed (long* a = &(aValue[0]), mr = &(mrValue[0]))
             {
-                mlc2r_c(a, &m, &n, mr, &max, &eps, &ierr);
+                mlc2r_c(a, &m, &n, mr, &max, &eps, &ierr,&h);
                 for (var i = 0; i < X.Length; ++i)
                 {
                     X[i] = (int) a[1 + i];
                 }
                 min = a[0];
             }
-
+            var diff = sw.Elapsed;
             var result = new OptimizationResult
             {
                 X = X,
                 Min = min,
-                ResultCode = (CalculationResult) ierr
+                ResultCode = (CalculationResult) ierr,
+                TimeDiff = diff,
+                IterCount = h
             };
             return result;
         }
@@ -75,7 +79,7 @@ namespace LargeScaleOptimization.Algorithms
             return aValue;
         }
 
-        private unsafe int mlc2r_c(long* a, long* m, long* n, long* mr, long* max__, double* eps, int* ierr)
+        private unsafe int mlc2r_c(long* a, long* m, long* n, long* mr, long* max__, double* eps, int* ierr,long *h)
         {
             /* System generated locals */
             long a_dim1, a_offset, i__1;
@@ -160,6 +164,7 @@ namespace LargeScaleOptimization.Algorithms
             L90:
             *ierr = 65;
             L100:
+            *h = iter;
             return 0;
         } /* mlc2r_c */
 

@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections;
+using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using LargeScaleOptimization.Algorithms;
 using LpSolveDotNet;
@@ -15,6 +18,8 @@ namespace LargeScaleOptimization
         private int _n;
         private int _m;
         private bool _isBLP;
+        private Guid _dataSetNo;
+        private OptimizationResult _lastResult;
 
         public Form1()
         {
@@ -155,25 +160,26 @@ namespace LargeScaleOptimization
             {
                 for (var j = 0; j < m; ++j)
                 {
-                    _A[j, i] = (long) inputAGridTab2[i*2, j].Value;
+                    _A[j, i] = long.Parse(inputAGridTab2[i*2, j].Value.ToString());
                 }
-                _C[i] = (long) inputCGridTab2[i*2, 0].Value;
+                _C[i] = long.Parse(inputCGridTab2[i*2, 0].Value.ToString());
             }
             for (var j = 0; j < m; ++j)
             {
-                _B[j] = (long) inputAGridTab2[n*2 + 1, j].Value;
+                _B[j] = long.Parse(inputAGridTab2[n*2 + 1, j].Value.ToString());
             }
         }
 
         private void buttonGenerateProblemTab2_Click(object sender, EventArgs e)
         {
+            _dataSetNo = Guid.NewGuid();
             var isBLP = radioButtonBLPTab2.Checked;
             int n = (int)numericUpDownNTab2.Value;
             int m = (int)numericUpDownMTab2.Value;
             UiHelper.SetGridSettings(inputAGridTab2, inputCGridTab2, n, m);
             var sg = new SimpleGenerator();
             sg.SetSize(m,n);
-            sg.Generate();
+            sg.Generate(isBLP);
             for (var i = 0; i < n; ++i)
             {
                 for (var j = 0; j < m; ++j)
@@ -225,15 +231,134 @@ namespace LargeScaleOptimization
 
         private void buttonSolveTab4_Click(object sender, EventArgs e)
         {
-            BaseAlgorithm algo = new ReduceVectorIntegerAlgorithm();
-            if (comboBoxAlgoTab4.SelectedIndex == 0 && !_isBLP)
+            BaseAlgorithm algo = null;
+            if ( _isBLP)
             {
-                algo = new ReduceVectorIntegerAlgorithm();
-                
+                if (comboBoxAlgoTab4.SelectedIndex == 0)
+                {
+                    algo = new ReduceVectorBoolAlgorithm();
+                }
+                if (comboBoxAlgoTab4.SelectedIndex == 1)
+                {
+                    algo = new BalashBoolAlgorithm();
+                }
+            }
+            else
+            {
+                if (comboBoxAlgoTab4.SelectedIndex == 0)
+                {
+                    algo = new ReduceVectorIntegerAlgorithm();
+                }
+                if (comboBoxAlgoTab4.SelectedIndex == 1)
+                {
+                    algo = new GomoryIntegerAlgorithm();
+                }
+            }
+            if (algo == null)
+            {
+                MessageBox.Show(@"Select correct algorithm", @"info");
+                return;
             }
             algo.SetMainInputData(_A, _B, _C, _X);
             var result = algo.CalcResult();
             richTextBoxResultTab4.Text = algo.FormatResultAsString(result);
+            _lastResult = result;
         }
+
+        private void buttonStoreTab4_Click(object sender, EventArgs e)
+        {
+            var line = string.Format("{0};{1};{2};{3};{4};{5};{6};{7}", _isBLP, comboBoxAlgoTab4.SelectedIndex, _m, _n,
+                _lastResult.Min, _lastResult.TimeDiff, _lastResult.IterCount, _dataSetNo);
+          
+            using (StreamWriter sw = File.AppendText("Data.txt"))
+            {
+                sw.WriteLine(line);
+            }
+        }
+
+        private void buttonAutoCalcTab5_Click(object sender, EventArgs e)
+        {
+            var maxS = 11;
+            var rc = (int)numericUpDownRecalcNo.Value;
+            for (var i = 2; i < maxS; ++i)
+            {
+                numericUpDownNTab2.Value = i;
+                numericUpDownMTab2.Value = i;
+                radioButtonBLPTab2.Checked = true;
+                radioButtonBLPTab2.Checked = false;
+                FormSetSize(i, i);
+                for (var j = 0; j < rc; ++j)
+                {
+                    tabControl1.SelectTab(2);
+                    buttonGenerateProblemTab2_Click(sender, e);
+                    buttonStoreTab2_Click(sender, e);
+                    tabControl1.SelectTab(4);
+                    buttonGenerateProblemTab2_Click(tabControl1, e);
+                    comboBoxAlgoTab4.SelectedIndex = 0;
+                    buttonSolveTab4_Click(sender, e);
+                    buttonStoreTab4_Click(sender, e);
+                    comboBoxAlgoTab4.SelectedIndex = 1;
+                    buttonSolveTab4_Click(sender, e);
+                    buttonStoreTab4_Click(sender, e);
+                }
+            }
+        }
+
+        private void buttonBuild1Tab5_Click(object sender, EventArgs e)
+        {
+            var lines = File.ReadAllLines("Data.txt");
+            var list = new System.Collections.Generic.List<ResultData>(lines.Length);
+            foreach (var line in lines)
+            {
+                var row = line.Split(';');
+                var rd = new ResultData()
+                {
+                    IsBLP = row[0]=="true",
+                    Type = int.Parse(row[1]),
+                    M = int.Parse(row[2]),
+                    N= int.Parse(row[3]),
+                    Value = long.Parse(row[4]),
+                    TimeDiff = TimeSpan.Parse(row[5]),
+                    IterCount = long.Parse(row[6]),
+                    DataSetNo = Guid.Parse(row[7])
+                };
+                list.Add(rd);
+            }
+            var avg0 = list.Where(x => x.N == 10 && x.M == 10 && x.Type == 0).Average(x => x.TimeDiff.Ticks);
+            var avg1 = list.Where(x => x.N == 10 && x.M == 10 && x.Type == 1).Average(x => x.TimeDiff.Ticks);
+            var ts0 = TimeSpan.FromTicks((long)Math.Round(avg0));
+            var ts1 = TimeSpan.FromTicks((long)Math.Round(avg1));
+            var avgV0 = list.Where(x => x.N == 9 && x.M == 9 && x.Type == 0).Average(x => x.Value);
+            var avgV1 = list.Where(x => x.N == 9 && x.M == 9 && x.Type == 1).Average(x => x.Value);
+            var percent = (1 - Math.Abs(avgV0)/ Math.Abs(avgV1)) *100;
+            chartTopTab5.Series["Series1"].Points.Clear();
+            chartTopTab5.Series["Series2"].Points.Clear();
+            chartTopTab5.Series["Series1"].LegendText = "БАМВС";
+            chartTopTab5.Series["Series2"].LegendText = "Балаша";
+            for (var i = 2; i < 11; ++i)
+            {
+                var ticks0 = list.Where(x => x.N == i && x.M == i && x.Type == 0).Average(x => x.TimeDiff.Ticks);
+                var avgT0= TimeSpan.FromTicks((long)Math.Round(ticks0));
+                chartTopTab5.Series["Series1"].Points.AddXY(i, avgT0.TotalMilliseconds);
+                var ticks1 = list.Where(x => x.N == i && x.M == i && x.Type == 1).Average(x => x.TimeDiff.Ticks);
+                var avgT1 = TimeSpan.FromTicks((long)Math.Round(ticks1));
+                chartTopTab5.Series["Series2"].Points.AddXY(i,avgT1.TotalMilliseconds);
+            }
+            chartTopTab5.ChartAreas[0].AxisY.IsLogarithmic = true;
+            chartTopTab5.ChartAreas[0].AxisX.IsLogarithmic = false;
+            chartTopTab5.Series["Series1"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+        }
+    }
+
+    public struct ResultData
+    {
+        public bool IsBLP;
+        public int Type;
+        public int M;
+        public int N;
+        public long Value;
+        public TimeSpan TimeDiff;
+        public long IterCount;
+        public Guid DataSetNo;
     }
 }
