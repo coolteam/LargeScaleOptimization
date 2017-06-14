@@ -7,6 +7,15 @@ namespace LargeScaleOptimization
 {
     public partial class Form1 : Form
     {
+
+        private long[,] _A;
+        private long[] _B;
+        private long[] _C;
+        private long[] _X;
+        private int _n;
+        private int _m;
+        private bool _isBLP;
+
         public Form1()
         {
             InitializeComponent();
@@ -97,148 +106,23 @@ namespace LargeScaleOptimization
             richTextBox1.Text = ga.FormatResultAsString(result);
         }
 
+        public void FormSetSize(int m, int n)
+        {
+            _n = n;
+            _m = m;
+            _A = new long[_m, _n];
+            _B = new long[_m];
+            _C = new long[_n];
+            _X = new long[_n];
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            var str1 = Radius1();
-            var str2 = Radius2();
-            var str3 = Radius3();
-            richTextBox1.Text = "radius1" + Environment.NewLine + str1 + Environment.NewLine + "radius2" +
-                                Environment.NewLine + str2 + "radius3" + Environment.NewLine + str3;
-        }
-
-        private string Radius1()
-        {
-            var X = new int[] {0, 0, 0, 0, 0};
-            var n = X.Length;
-            var x = new int[n];
-            var r = 1;
-            var str = string.Empty;
-            for (var i = 0; i < n; ++i)
-            {
-                for (var p1 = -r; p1 <= r; ++p1)
-                {
-                    if (p1 == 0)
-                    {
-                        continue;
-                    }
-                    x[i] += p1;
-                    //CalcDelta(x, X);
-                    str += VectorToStr(x);
-                    x[i] -= p1;
-                }
-            }
-            return str;
-        }
-
-        private string Radius2()
-        {
-            var X = new int[] {0, 0, 0, 0, 0};
-            var n = X.Length;
-            var x = new int[n];
-            const int r = 2;
-            var str = string.Empty;
-            var p1Arr = new[] {-r, r};
-            var p2Arr = new[]
-            {
-                new[] {-r + 1, -r + 1},
-                new[] {-r + 1, r - 1},
-                new[] {r - 1, -r + 1},
-                new[] {r - 1, r - 1}
-            };
-            for (var i = 0; i < n; ++i)
-            {
-                for (var p = 0; p < p1Arr.Length; ++p)
-                {
-                    x[i] += p1Arr[p];
-                    //todo calc
-                    str += VectorToStr(x);
-                    x[i] -= p1Arr[p];
-                }
-                for (var j = i + 1; j < n; ++j)
-                {
-                    for (var p = 0; p < p2Arr.Length; ++p)
-                    {
-                        x[i] += p2Arr[p][0];
-                        x[j] += p2Arr[p][1];
-                        //todo calc
-                        str += VectorToStr(x);
-                        x[i] -= p2Arr[p][0];
-                        x[j] -= p2Arr[p][1];
-                    }
-                }
-            }
-            return str;
-        }
-
-        private string Radius3()
-        {
-            var X = new int[] { 0, 0, 0, 0, 0 };
-            var n = X.Length;
-            var x = new int[n];
-            const int r = 3;
-            var str = string.Empty;
-            var p1Arr = new[] { -r, r };
-            var p2Arr = new[]
-            {
-                new[] {-r + 1, -r + 2},
-                new[] {-r + 1, r - 2},
-                new[] {-r + 2, -r + 1},
-                new[] {-r + 2, r - 1},
-                new[] {r - 1, -r + 2},
-                new[] {r - 1, r - 2},
-                new[] {r - 2, -r + 1},
-                new[] {r - 2, r - 1},
-            };
-            var p3Arr = new[]
-            {
-                new[] {-r + 2, -r + 2, -r + 2},
-                new[] {-r + 2, -r + 2, r - 2},
-                new[] {-r + 2, r - 2, -r + 2},
-                new[] {-r + 2, r - 2, r - 2},
-                new[] {r - 2, -r + 2, -r + 2},
-                new[] {r - 2, -r + 2, r - 2},
-                new[] {r - 2, r - 2, -r + 2},
-                new[] {r - 2, r - 2, r - 2},
-            };
-            for (var i = 0; i < n; ++i)
-            {
-                for (var p = 0; p < p1Arr.Length; ++p)
-                {
-                    x[i] += p;
-                    //todo calc
-                    str += VectorToStr(x);
-                    x[i] -= p;
-                }
-                for (var j = i + 1; j < n; ++j)
-                {
-                    for (var p = 0; p < p2Arr.Length; ++p)
-                    {
-                        x[i] += p2Arr[p][0];
-                        x[j] += p2Arr[p][1];
-                        //todo calc
-                        str += VectorToStr(x);
-                        x[i] -= p2Arr[p][0];
-                        x[j] -= p2Arr[p][1];
-                    }
-                    for (var k = j + 1; k < n; ++k)
-                    {
-                        for (var p = 0; p < p3Arr.Length; ++p)
-                        {
-                            x[i] += p3Arr[p][0];
-                            x[j] += p3Arr[p][1];
-                            x[k] += p3Arr[p][2];
-                            //todo calc
-                            str += VectorToStr(x);
-                            x[i] -= p3Arr[p][0];
-                            x[j] -= p3Arr[p][1];
-                            x[k] -= p3Arr[p][2];
-                        }
-                    }
-                    //str += Environment.NewLine;
-                }
-                //str += Environment.NewLine;
-            }
-            return str;
+            //var str1 = Radius1();
+            //var str2 = Radius2();
+            //var str3 = Radius3();
+            //richTextBox1.Text = "radius1" + Environment.NewLine + str1 + Environment.NewLine + "radius2" +
+            //                    Environment.NewLine + str2 + "radius3" + Environment.NewLine + str3;
         }
 
         private string VectorToStr(int[] x)
@@ -263,17 +147,93 @@ namespace LargeScaleOptimization
 
         private void buttonStoreTab2_Click(object sender, EventArgs e)
         {
-
+            _isBLP = radioButtonBLPTab2.Checked;
+            int n = (int)numericUpDownNTab2.Value;
+            int m = (int)numericUpDownMTab2.Value;
+            FormSetSize(m, n);
+            for (var i = 0; i < n; ++i)
+            {
+                for (var j = 0; j < m; ++j)
+                {
+                    _A[j, i] = (long) inputAGridTab2[i*2, j].Value;
+                }
+                _C[i] = (long) inputCGridTab2[i*2, 0].Value;
+            }
+            for (var j = 0; j < m; ++j)
+            {
+                _B[j] = (long) inputAGridTab2[n*2 + 1, j].Value;
+            }
         }
 
         private void buttonGenerateProblemTab2_Click(object sender, EventArgs e)
         {
+            var isBLP = radioButtonBLPTab2.Checked;
             int n = (int)numericUpDownNTab2.Value;
             int m = (int)numericUpDownMTab2.Value;
+            UiHelper.SetGridSettings(inputAGridTab2, inputCGridTab2, n, m);
             var sg = new SimpleGenerator();
-            sg.SetSize(n,m);
+            sg.SetSize(m,n);
             sg.Generate();
-            var a = sg.A;
+            for (var i = 0; i < n; ++i)
+            {
+                for (var j = 0; j < m; ++j)
+                {
+                    inputAGridTab2[i*2, j].Value = sg.A[j, i];
+                }
+                inputCGridTab2[i*2, 0].Value = sg.C[i];
+            }
+            for (var j = 0; j < m; ++j)
+            {
+                inputAGridTab2[n*2+1, j].Value = sg.B[j];
+            }
+            
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (((TabControl) sender).SelectedIndex == 4)
+            {
+                radioButtonBLPTab4.Checked = _isBLP;
+                radioButtonILPTab4.Checked = !_isBLP;
+                comboBoxAlgoTab4.Items.Clear();
+                if (_isBLP)
+                {
+                    comboBoxAlgoTab4.Items.Add("Метод вектора спаду (БЛП)");
+                    comboBoxAlgoTab4.Items.Add("Метод Балаша");
+                }
+                else
+                {
+                    comboBoxAlgoTab4.Items.Add("Метод вектора спаду (ЦЛП)");
+                    comboBoxAlgoTab4.Items.Add("Метод Гоморі");
+                }
+                comboBoxAlgoTab4.SelectedIndex = -1;
+                UiHelper.SetGridSettings(inputAGridTab4, inputCGridTab4, _n, _m);
+                for (var i = 0; i < _n; ++i)
+                {
+                    for (var j = 0; j < _m; ++j)
+                    {
+                        inputAGridTab4[i * 2, j].Value = _A[j, i];
+                    }
+                    inputCGridTab4[i * 2, 0].Value = _C[i];
+                }
+                for (var j = 0; j < _m; ++j)
+                {
+                    inputAGridTab4[_n * 2 + 1, j].Value = _B[j];
+                }
+            }
+        }
+
+        private void buttonSolveTab4_Click(object sender, EventArgs e)
+        {
+            BaseAlgorithm algo = new ReduceVectorIntegerAlgorithm();
+            if (comboBoxAlgoTab4.SelectedIndex == 0 && !_isBLP)
+            {
+                algo = new ReduceVectorIntegerAlgorithm();
+                
+            }
+            algo.SetMainInputData(_A, _B, _C, _X);
+            var result = algo.CalcResult();
+            richTextBoxResultTab4.Text = algo.FormatResultAsString(result);
         }
     }
 }
